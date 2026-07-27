@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router';
 import BaseLayout from './layouts/Base';
 import { SEO } from './components/SEO';
 import Home from './pages/Home';
-import 'lenis/dist/lenis.css';
 
 export default function App() {
   return (

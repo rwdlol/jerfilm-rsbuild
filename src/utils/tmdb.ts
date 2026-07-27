@@ -8,7 +8,7 @@ export interface FetchOptions extends RequestInit {
   params?: Record<string, string | number | boolean | undefined>;
 }
 
-export async function fetchTMDB<T = any>(
+export async function fetchTMDB<T = unknown>(
   endpoint: string,
   options: FetchOptions = {},
 ): Promise<T> {
@@ -55,29 +55,37 @@ export async function fetchTMDB<T = any>(
   return response.json();
 }
 
-export function useTMDB<T = any>(
+export function useTMDB<T = unknown>(
   endpoint: string | null,
   options?: FetchOptions,
 ) {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(Boolean(endpoint));
   const [error, setError] = useState<Error | null>(null);
+  const [prevEndpoint, setPrevEndpoint] = useState<string | null>(endpoint);
 
-  const paramsString = JSON.stringify(options?.params);
+  // Reset state during render if endpoint changes (React state adjustment pattern)
+  if (endpoint !== prevEndpoint) {
+    setPrevEndpoint(endpoint);
+    setData(null);
+    setLoading(Boolean(endpoint));
+    setError(null);
+  }
+
+  const serializedOptions = JSON.stringify(options);
 
   useEffect(() => {
     if (!endpoint) {
-      setData(null);
-      setLoading(false);
-      setError(null);
       return;
     }
 
     let isMounted = true;
-    setLoading(true);
-    setError(null);
 
-    fetchTMDB<T>(endpoint, options)
+    const parsedOptions: FetchOptions | undefined = serializedOptions
+      ? (JSON.parse(serializedOptions) as FetchOptions)
+      : undefined;
+
+    fetchTMDB<T>(endpoint, parsedOptions)
       .then((res) => {
         if (isMounted) {
           setData(res);
@@ -94,7 +102,7 @@ export function useTMDB<T = any>(
     return () => {
       isMounted = false;
     };
-  }, [endpoint, paramsString]);
+  }, [endpoint, serializedOptions]);
 
   return [data, loading, error] as const;
 }
@@ -107,10 +115,21 @@ export interface TMDBResponseList<T> {
 }
 
 export interface Movie {
+  adult: boolean;
   id: number;
   title: string;
   overview: string;
   poster_path: string | null;
   release_date: string;
+  vote_average: number;
+}
+
+export interface Serie {
+  adult: boolean;
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string | null;
+  first_air_date: string;
   vote_average: number;
 }
