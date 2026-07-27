@@ -6,6 +6,10 @@ import { pluginTailwindcss } from '@rsbuild/plugin-tailwindcss';
 export default defineConfig({
   html: {
     template: './static/index.html',
+    title: 'JerFilm.VIP',
+    meta: {
+      description: 'Welcome to JerFilm.VIP',
+    },
   },
   plugins: [
     pluginReact({

@@ -4,6 +4,11 @@
   --color-gold: gold;
 }
 
+* {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
 html {
   @apply h-full overflow-hidden;
 }
