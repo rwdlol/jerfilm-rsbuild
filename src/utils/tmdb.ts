@@ -18,16 +18,13 @@ export async function fetchTMDB<T = unknown>(
 
   const { params, headers, ...restOptions } = options;
 
-  // Ensure path structure
   const formattedEndpoint = endpoint.startsWith('/')
     ? endpoint
     : `/${endpoint}`;
   const url = new URL(`${TMDB_BASE_URL}${formattedEndpoint}`);
 
-  // Automatically append the API key
   url.searchParams.append('api_key', TMDB_API_KEY);
 
-  // Append other parameters if provided
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
@@ -64,7 +61,6 @@ export function useTMDB<T = unknown>(
   const [error, setError] = useState<Error | null>(null);
   const [prevEndpoint, setPrevEndpoint] = useState<string | null>(endpoint);
 
-  // Reset state during render if endpoint changes (React state adjustment pattern)
   if (endpoint !== prevEndpoint) {
     setPrevEndpoint(endpoint);
     setData(null);
@@ -119,7 +115,8 @@ export interface Movie {
   id: number;
   title: string;
   overview: string;
-  poster_path: string | null;
+  poster_path: string;
+  backdrop_path: string;
   release_date: string;
   vote_average: number;
 }

@@ -1,13 +1,15 @@
 import { Outlet } from 'react-router';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function BaseLayout() {
   return (
     <div className="flex flex-col w-full max-w-7xl mx-auto h-full px-4">
       <Header />
-      <main className="relative z-0 flex-1 flex flex-col w-full h-full">
+      <main className="relative z-0 flex-1 flex flex-col w-full">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }
