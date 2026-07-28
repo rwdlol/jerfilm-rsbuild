@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router';
 import BaseLayout from './layouts/Base';
 import { SEO } from './components/SEO';
 import Home from './pages/Home';
+import MovieDetail from './pages/MovieDetail';
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
       <Route path="/" element={<BaseLayout />}>
         <Route index element={<Home />} />
         <Route path="/movie" element={<>movies</>} />
-        <Route path="/movie/:id" element={<>movie details</>} />
+        <Route path="/movie/:movieId" element={<MovieDetail />} />
         <Route path="/tv" element={<>tv shows</>} />
         <Route path="/tv/:id" element={<>tv show details</>} />
         <Route path="/person" element={<>people</>} />

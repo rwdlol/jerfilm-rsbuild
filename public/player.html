@@ -1,0 +1,130 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+      default-src 'none';
+      script-src 'unsafe-inline';
+      style-src 'unsafe-inline';
+      frame-src *;
+      media-src *;
+      img-src 'self' data:;
+      connect-src 'none';
+    "
+    />
+    <title>Player</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+      }
+      #player-frame {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+    </style>
+    <script>
+      (function () {
+        // Intercept and disable popup window creation at the parent level
+        const noop = function () {};
+        const fakeWindow = {
+          closed: false,
+          close: noop,
+          focus: noop,
+          blur: noop,
+          moveTo: noop,
+          resizeTo: noop,
+          postMessage: noop,
+          print: noop,
+          document: { write: noop, writeln: noop, open: noop, close: noop },
+          location: { href: '', replace: noop, assign: noop, reload: noop },
+        };
+        try {
+          Object.defineProperty(window, 'open', {
+            value: function () {
+              return fakeWindow;
+            },
+            writable: false,
+            configurable: false,
+          });
+        } catch (e) {
+          window.open = function () {
+            return fakeWindow;
+          };
+        }
+
+        // Silent Redirection Interceptor: Halts navigation attempts from the iframe click
+        // without showing popup alerts on user-initiated manual refreshes.
+        window.addEventListener('blur', function () {
+          if (
+            document.activeElement === document.getElementById('player-frame')
+          ) {
+            setTimeout(function () {
+              window.stop();
+            }, 50);
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <iframe
+      id="player-frame"
+      src="about:blank"
+      style="width: 100%; height: 100%"
+      frameborder="0"
+      referrerpolicy="origin"
+      allowfullscreen
+    ></iframe>
+    <script>
+      (function () {
+        // Parse search parameters
+        var params = new URLSearchParams(window.location.search);
+        var videoId = params.get('video_id') || '';
+        var serverName = params.get('server') || 'one';
+        var type = params.get('type') || 'movie'; // 'movie' or 'serie'
+        var s = params.get('s') || '1'; // season
+        var e = params.get('e') || '1'; // episode
+
+        // check if we have subtitle file
+        var subUrl = `https://www.jerfilm.vip/subtitles/${videoId}.srt`;
+
+        var serverConfig = {
+          one: {
+            movie: `https://vsembed.ru/embed/movie?tmdb=${videoId}&sub_url=${subUrl}`,
+            serie: `https://vsembed.ru/embed/tv?tmdb=${videoId}&s=${s}&e=${e}&sub_url=${subUrl}`,
+          },
+        };
+
+        // Determine correct URL based on selected server and type
+        var targetUrl = '';
+        var selectedServer = serverConfig[serverName] || serverConfig['one'];
+
+        if (type === 'serie') {
+          targetUrl = selectedServer.serie;
+        } else {
+          targetUrl = selectedServer.movie;
+        }
+
+        // Apply URL to the iframe
+        if (targetUrl) {
+          document.getElementById('player-frame').src = targetUrl;
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -111,14 +111,17 @@ export interface TMDBResponseList<T> {
 }
 
 export interface Movie {
-  adult: boolean;
+  adult?: boolean;
   id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
+  title?: string;
+  overview?: string;
+  poster_path?: string;
+  backdrop_path?: string;
+  release_date?: string;
+  vote_average?: number;
+  cta_text?: string;
+  cta_link?: string;
+  cta_type?: 'gold' | 'default';
 }
 
 export interface Serie {
@@ -129,4 +132,26 @@ export interface Serie {
   poster_path: string | null;
   first_air_date: string;
   vote_average: number;
+}
+
+export interface MovieDetail {
+  adult?: boolean;
+  id: number;
+  status?: string;
+  runtime?: number;
+  title?: string;
+  original_title?: string;
+  overview?: string;
+  poster_path?: string;
+  vote_average?: number;
+  vote_count?: number;
+  release_date?: string;
+  belongs_to_collection?: {
+    id: number;
+    name?: string;
+  };
+  genres?: { id: number; name: string }[];
+  origin_country?: string[];
+  original_language?: string;
+  backdrop_path?: string;
 }

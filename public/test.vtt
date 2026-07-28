@@ -1,0 +1,18 @@
+WEBVTT
+
+STYLE
+::cue {
+  color: white;
+  background-color: black;
+  font-family: Rabar022, Arial, sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  text-shadow: 1px 1px 4px black;
+  text-align: center;
+  font-size: 1em;
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+00:00:00.000 --> 00:10:10.000
+سوپاس بۆ بەکارهێنانی jerfilm.vip

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { Movie } from '../../utils/tmdb';
+import { Link } from 'react-router';
 
 interface HeroCarouselProps {
   slides: Movie[];
@@ -74,10 +75,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   };
 
   return (
-    <div
-      dir="ltr"
-      className="relative w-full h-auto aspect-12/6 border border-zinc-800 overflow-hidden select-none"
-    >
+    <div className="relative w-full h-auto aspect-12/6 border border-zinc-800 overflow-hidden select-none rounded-2xl">
       <div
         ref={containerRef}
         onScroll={handleScroll}
@@ -92,39 +90,70 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        {slides.map((slide) => (
-          <div
-            key={slide.id}
-            className="w-full min-w-full h-full snap-start shrink-0 relative overflow-hidden"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w780${slide.backdrop_path || slide.poster_path}`}
-              alt={slide.title}
-              title={slide.title}
-              loading="lazy"
-              fetchPriority="auto"
-              draggable={false}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            />
+        {slides.map((slide) => {
+          let imageUrl: string;
+          if (slide.backdrop_path) {
+            imageUrl = 'https://image.tmdb.org/t/p/w780' + slide.backdrop_path;
+          } else {
+            if (slide.poster_path) {
+              if (slide.poster_path.startsWith('/static/')) {
+                imageUrl = slide.poster_path;
+              } else {
+                imageUrl =
+                  'https://image.tmdb.org/t/p/w780' + slide.poster_path;
+              }
+            } else {
+              imageUrl =
+                'https://placehold.co/780x439/000000/FFFFFF/png?text=No+Image';
+            }
+          }
 
-            <div className="absolute inset-0 bg-linear-to-r from-zinc-950/90 via-zinc-950/50 to-transparent" />
-            <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
+          return (
+            <div
+              key={slide.id}
+              className="w-full min-w-full h-full snap-start shrink-0 relative overflow-hidden"
+            >
+              <img
+                src={imageUrl}
+                alt={slide.title}
+                title={slide.title}
+                loading="lazy"
+                fetchPriority="auto"
+                draggable={false}
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              />
 
-            <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
-              <div className="max-w-xl">
-                <span className="inline-block px-3 py-1 mb-3 text-sm bg-zinc-100/10 border border-zinc-100/20 rounded-full text-zinc-100 backdrop-blur-md">
-                  testing
-                </span>
-                <h1 className="text-2xl md:text-4xl mb-3 text-zinc-100 leading-tight drop-shadow">
-                  {slide.title}
-                </h1>
-                <p className="hidden md:block text-base text-gray-300 mb-6 line-clamp-3 leading-relaxed">
-                  {slide.overview}
-                </p>
+              <div className="absolute inset-0 bg-linear-to-l from-zinc-950/90 via-zinc-950/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
+
+              <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
+                <div className="max-w-xl">
+                  {/* <span className="inline-block px-3 py-1 mb-3 text-sm bg-zinc-100/10 border border-zinc-100/20 rounded-full text-zinc-100 backdrop-blur-md">
+                    testing
+                  </span> */}
+                  <h1 className="text-2xl md:text-4xl mb-3 text-zinc-100 leading-tight drop-shadow">
+                    {slide.title}
+                  </h1>
+                  <p className="hidden md:block text-base text-gray-300 mb-6 line-clamp-3 leading-relaxed">
+                    {slide.overview}
+                  </p>
+                  {slide.cta_text && slide.cta_link && (
+                    <Link
+                      to={slide.cta_link}
+                      className={`rounded-full font-bold p-2 px-4 ${
+                        slide.cta_type === 'gold'
+                          ? 'text-zinc-950 bg-gold ring-2 ring-gold ring-offset-2 ring-offset-zinc-950'
+                          : 'bg-zinc-100 text-zinc-950'
+                      }`}
+                    >
+                      {slide.cta_text}
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="absolute bottom-4 inset-x-0 flex justify-end px-4 gap-2 z-20 pointer-events-auto">

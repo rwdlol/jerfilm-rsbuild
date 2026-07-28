@@ -46,16 +46,20 @@ export default function TrendingMovies() {
                     <div className="relative w-12 h-12 rounded-full bg-zinc-900/15 backdrop-blur-2xl flex items-center justify-center font-bold text-center">
                       <Play size={24} fill="white" stroke="white" />
                     </div>
-                    <div className="absolute top-2 right-2 flex items-center rounded-full leading-none gap-1 text-sm bg-white/15 backdrop-blur-2xl text-white p-1.5 px-2 font-bold font-rabar21">
-                      <Star size={14} fill="gold" stroke="gold" />
-                      {movie.vote_average.toFixed(1)}
-                    </div>
+                    {movie.vote_average && (
+                      <div className="absolute top-2 right-2 flex items-center rounded-full leading-none gap-1 text-sm bg-white/15 backdrop-blur-2xl text-white p-1.5 px-2 font-bold font-rabar21">
+                        <Star size={14} fill="gold" stroke="gold" />
+                        {movie.vote_average.toFixed(1)}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <h3 className="mt-2 mb-1">{movie.title}</h3>
-                <p className="text-sm">
-                  {new Date(movie.release_date).getFullYear()}
-                </p>
+                {movie.release_date && (
+                  <p className="text-sm">
+                    {new Date(movie.release_date).getFullYear()}
+                  </p>
+                )}
               </Link>
             );
           })}
