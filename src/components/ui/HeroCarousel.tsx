@@ -75,7 +75,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   };
 
   return (
-    <div className="relative w-full h-auto aspect-12/6 border border-zinc-800 overflow-hidden select-none rounded-2xl">
+    <div className="relative w-full h-auto aspect-10/4 border border-zinc-800 overflow-hidden select-none rounded-2xl">
       <div
         ref={containerRef}
         onScroll={handleScroll}
@@ -127,11 +127,11 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
               <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
 
               <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
-                <div className="max-w-xl">
+                <div className="max-w-xl flex flex-col gap-4 w-fit">
                   {/* <span className="inline-block px-3 py-1 mb-3 text-sm bg-zinc-100/10 border border-zinc-100/20 rounded-full text-zinc-100 backdrop-blur-md">
                     testing
                   </span> */}
-                  <h1 className="text-2xl md:text-4xl mb-3 text-zinc-100 leading-tight drop-shadow">
+                  <h1 className="text-2xl md:text-4xl text-zinc-100 leading-tight drop-shadow">
                     {slide.title}
                   </h1>
                   <p className="hidden md:block text-base text-gray-300 mb-6 line-clamp-3 leading-relaxed">
@@ -140,7 +140,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                   {slide.cta_text && slide.cta_link && (
                     <Link
                       to={slide.cta_link}
-                      className={`rounded-full font-bold p-2 px-4 ${
+                      className={`rounded-full w-fit font-bold p-2 px-4 ${
                         slide.cta_type === 'gold'
                           ? 'text-zinc-950 bg-gold ring-2 ring-gold ring-offset-2 ring-offset-zinc-950'
                           : 'bg-zinc-100 text-zinc-950'

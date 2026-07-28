@@ -64,7 +64,7 @@ function NavLink({
     <Link
       to={to}
       onClick={onClick}
-      className="flex text-start items-center justify-star w-full md:w-fit text-xl px-4 py-2 rounded-xl hover:bg-white/15"
+      className="flex text-start items-center justify-star w-full md:w-fit md:text-base text-xl md:p-1 md:px-2 px-4 py-2 rounded-xl hover:bg-white/15"
     >
       {children}
     </Link>

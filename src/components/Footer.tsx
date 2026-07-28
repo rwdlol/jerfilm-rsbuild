@@ -105,10 +105,11 @@ export default function Footer() {
           </Link>
         </p>
         <p dir="ltr" className="max-w-xl text-sm text-zinc-400">
-          This site does not store files on its server; it only links to
-          third-party media. Hosted on GitHub Pages as an educational project.
-          We use the TMDB API but are not endorsed or certified by TMDB. We do
-          not Save any user data or track users.
+          THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY! This site does not
+          store any files and we do not track users; it only links to
+          third-party media. Hosted on GitHub Pages. We use the TMDB API but are
+          not endorsed or certified by TMDB. We do not Save any user data or
+          track users.
         </p>
       </div>
     </footer>

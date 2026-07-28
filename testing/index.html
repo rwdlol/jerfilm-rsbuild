@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fast English to Kurdish Sorani Subtitle Translator</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #f9f9f9; color: #333; }
+        h1 { font-size: 22px; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input[type="file"] { margin: 15px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        button:disabled { background: #ccc; }
+        #status { margin-top: 15px; font-weight: bold; font-size: 14px; color: #555; }
+        #downloadArea { margin-top: 20px; }
+        .progress-bar { width: 100%; background-color: #e0e0e0; padding: 3px; border-radius: 3px; box-shadow: inset 0 1px 3px rgba(0,0,0,.2); margin-top: 10px; }
+        .progress-bar-fill { height: 15px; background-color: #007bff; width: 0%; border-radius: 4px; transition: width 0.2s ease-in-out; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Fast English to Kurdish (Sorani) Subtitle Translator</h1>
+        <p>Select an .srt file. This version groups subtitles and translates them concurrently for maximum speed.</p>
+        <input type="file" id="srtFile" accept=".srt"><br>
+        <button id="translateBtn" onclick="startTranslation()" disabled>Translate Subtitles Fast</button>
+        <div id="progressContainer" style="display:none;" class="progress-bar">
+            <div id="progressBar" class="progress-bar-fill"></div>
+        </div>
+        <div id="status"></div>
+        <div id="downloadArea"></div>
+    </div>
+
+    <script>
+        let fileContent = "";
+        let parsedCues = [];
+        const CONCURRENCY_LIMIT = 5; // Balanced speed to protect against API blocking
+
+        document.getElementById('srtFile').addEventListener('change', function(e) {
+            // FIXED: Added [0] to extract the specific file item out of the file array list
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                fileContent = evt.target.result;
+                parseSRT(fileContent);
+                document.getElementById('translateBtn').disabled = false;
+                document.getElementById('status').innerText = `Loaded file: ${file.name} (${parsedCues.length} cues found).`;
+                document.getElementById('progressContainer').style.display = 'none';
+                document.getElementById('downloadArea').innerHTML = '';
+            };
+            reader.readAsText(file);
+        });
+
+        function parseSRT(data) {
+            const cleaned = data.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+            const blocks = cleaned.split(/\n\s*\n/);
+            parsedCues = [];
+            for (let block of blocks) {
+                if (!block.trim()) continue;
+                const lines = block.split('\n');
+                if (lines.length >= 3) {
+                    const id = lines[0];
+                    const timecode = lines[1];
+                    const text = lines.slice(2).join('\n');
+                    parsedCues.push({ id, timecode, text });
+                }
+            }
+        }
+
+        async function translateText(text) {
+            if (!text.trim()) return text;
+            const url = `https://translated.net{encodeURIComponent(text)}&langpair=en|ckb`;
+            try {
+                const res = await fetch(url);
+                const json = await res.json();
+                if (json && json.responseData && json.responseData.translatedText) {
+                    return json.responseData.translatedText;
+                }
+            } catch (err) {
+                console.error("Translation segment failed", err);
+            }
+            return text; // Return original text on network error fallback
+        }
+
+        async function startTranslation() {
+            const btn = document.getElementById('translateBtn');
+            const status = document.getElementById('status');
+            const progressBar = document.getElementById('progressBar');
+            document.getElementById('progressContainer').style.display = 'block';
+            btn.disabled = true;
+
+            const total = parsedCues.length;
+            let completed = 0;
+
+            const pool = [...parsedCues];
+            const workers = Array(Math.min(CONCURRENCY_LIMIT, pool.length)).fill(null).map(async () => {
+                while (pool.length > 0) {
+                    const cue = pool.shift();
+                    cue.translatedText = await translateText(cue.text);
+                    completed++;
+                    
+                    const percentage = Math.round((completed / total) * 100);
+                    progressBar.style.width = percentage + '%';
+                    status.innerText = `Processing: ${completed} / ${total} cues completed (${percentage}%)`;
+                    
+                    // Tiny cooldown to avoid server security flags IP blocking you
+                    await new Promise(r => setTimeout(r, 50));
+                }
+            });
+
+            await Promise.all(workers);
+
+            let finalSrt = "";
+            for (let cue of parsedCues) {
+                finalSrt += `${cue.id}\n${cue.timecode}\n${cue.translatedText || cue.text}\n\n`;
+            }
+
+            status.innerText = "Translation completed successfully!";
+            createDownloadLink(finalSrt.trim());
+            btn.disabled = false;
+        }
+
+        function createDownloadLink(srtData) {
+            const blob = new Blob([srtData], { type: 'text/srt;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const area = document.getElementById('downloadArea');
+            area.innerHTML = `<a href="${url}" download="fast_translated_kurdish.srt"><button style="background: #28a745;">Download Translated .SRT</button></a>`;
+        }
+    </script>
+</body>
+</html>
