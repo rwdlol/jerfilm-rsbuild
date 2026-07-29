@@ -17,9 +17,6 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
     { id: 'three', name: 'سێرڤەری سێ' },
     { id: 'four', name: 'سێرڤەری چوار' },
     { id: 'five', name: 'سێرڤەری پێنج' },
-    { id: 'six', name: 'سێرڤەری شەش' },
-    { id: 'seven', name: 'سێرڤەری حەوت' },
-    { id: 'eight', name: 'سێرڤەری هەشت' },
   ];
 
   return (
@@ -42,12 +39,6 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
               </svg>
               <span>کرتە بکە بۆ بینینی ڤیدیۆ</span>
             </button>
-
-            <p className="text-sm text-zinc-500 mt-3 mb-4">
-              فیلم یان زنجیرەکە بە شێوەیەکی خۆڕایی پەخش دەکرێت
-            </p>
-
-            {/* English Disclaimer Text for Open Source and Third-Party Media */}
             <div className="hidden md:block max-w-2xl border-t border-zinc-900/60 pt-4 text-center">
               <p className="text-sm sm:text-sm text-zinc-600 leading-relaxed normal-case tracking-normal">
                 Disclaimer: This is an open-source, educational project. We do
@@ -60,15 +51,14 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
             </div>
           </div>
         ) : (
-          // Iframe Player
           <iframe
             id="player-frame"
-            allow="encrypted-media; fullscreen *;"
             className="w-full h-full border-0 outline-none ring-0 overflow-hidden"
             src={`/player.html?video_id=${id}&server=${encodeURIComponent(server)}&type=${encodeURIComponent(type)}${
               s ? `&s=${encodeURIComponent(s)}` : ''
             }${e ? `&e=${encodeURIComponent(e)}` : ''}`}
             title="Media Player"
+            allow="autoplay *; fullscreen *; picture-in-picture *; encrypted-media *"
             allowFullScreen
           ></iframe>
         )}
@@ -76,7 +66,7 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
 
       {/* 2. Responsive Server Tabs list */}
       <div className="flex flex-col gap-2 px-1">
-        <span className="text-zinc-500">هەڵبژاردنی سێرڤەری پەخش:</span>
+        <span className="text-zinc-500">هەڵبژاردنی سێرڤەر:</span>
         <div className="flex flex-row overflow-x-auto gap-2 pb-2 scrollbar-none snap-x snap-mandatory">
           {servers.map((srv) => (
             <ServerSelector

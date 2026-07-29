@@ -17,7 +17,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-gold: gold;
+  --color-gold: #ffd700;
+  --color-blue: #0028ff;
   --font-rabar21: Rabar021, sans-serif;
   --font-rabar22: Rabar022, sans-serif;
 }

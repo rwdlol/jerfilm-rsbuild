@@ -10,7 +10,7 @@ export default function Footer() {
           <h2 className="text-2xl text-white tracking-tight">
             JerFilm<span className="text-gold">.VIP</span>
           </h2>
-          <p className="max-w-md text-zinc-400 text-sm leading-relaxed">
+          <p className="max-w-md text-zinc-400 leading-relaxed">
             گەورەترین ماڵپەڕی کوردی بۆ فیلم و زنجیرەی جیهانی بە ژێرنووسی کوردی.
             خێراترین سیستەمی وەرگێڕانی بێ ڕێکلام. ئیتر چاوەڕوانی نییە، سیستەمی
             ai ی ئۆتۆماتیکی هەموو شتێکت بۆ وەرگێڕاوە.
@@ -19,10 +19,8 @@ export default function Footer() {
 
         {/* Quick Links Column */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-white font-bold text-sm tracking-wide">
-            لاپەڕەکان
-          </h3>
-          <ul className="flex flex-col gap-2.5 text-sm">
+          <h3 className="text-white font-bold tracking-wide">لاپەڕەکان</h3>
+          <ul className="flex flex-col gap-2.5">
             <li>
               <Link
                 to="/"
@@ -68,10 +66,10 @@ export default function Footer() {
 
         {/* Social Links Column */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-white font-bold text-sm tracking-wide">
+          <h3 className="text-white font-bold tracking-wide">
             فۆڵۆومان بکەن لە...
           </h3>
-          <ul className="flex flex-col gap-2.5 text-sm">
+          <ul className="flex flex-col gap-2.5">
             <li>
               <Link
                 to="/"
@@ -105,7 +103,7 @@ export default function Footer() {
         dir="ltr"
         className="border-t border-zinc-900/60 bg-zinc-950/40 py-8 px-4 flex flex-col gap-4 items-center justify-center text-center"
       >
-        <p className="text-xs sm:text-sm text-zinc-400">
+        <p className="text-zinc-400">
           &copy; {new Date().getFullYear()}{' '}
           <span className="text-white">
             JerFilm<span className="text-gold">.VIP</span>
@@ -120,7 +118,7 @@ export default function Footer() {
         </p>
 
         {/* Legal Disclaimer in English */}
-        <p className="max-w-2xl text-sm text-zinc-500 leading-relaxed">
+        <p className="max-w-2xl text-sm text-zinc-400 leading-relaxed">
           THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY! This site does not
           store any files and we do not track users; it only links to
           third-party media. Hosted on GitHub Pages. We use the TMDB API but are
