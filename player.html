@@ -21,6 +21,8 @@
       * {
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
         box-sizing: border-box;
       }
       html,
@@ -39,7 +41,6 @@
     </style>
     <script>
       (function () {
-        // Intercept and disable popup window creation at the parent level
         const noop = function () {};
         const fakeWindow = {
           closed: false,
@@ -66,9 +67,6 @@
             return fakeWindow;
           };
         }
-
-        // Silent Redirection Interceptor: Halts navigation attempts from the iframe click
-        // without showing popup alerts on user-initiated manual refreshes.
         window.addEventListener('blur', function () {
           if (
             document.activeElement === document.getElementById('player-frame')
@@ -87,7 +85,8 @@
       src="about:blank"
       style="width: 100%; height: 100%"
       frameborder="0"
-      referrerpolicy="origin"
+      allow="autoplay *; fullscreen *; picture-in-picture *; encrypted-media *"
+      referrerpolicy="no-referrer"
       allowfullscreen
     ></iframe>
     <script>
@@ -101,12 +100,33 @@
         var e = params.get('e') || '1'; // episode
 
         // check if we have subtitle file
-        var subUrl = `https://www.jerfilm.vip/subtitles/${videoId}.srt`;
+        // var subUrl = `https://www.jerfilm.vip/subtitles/${videoId}.srt`;
 
         var serverConfig = {
           one: {
-            movie: `https://vsembed.ru/embed/movie?tmdb=${videoId}&sub_url=${subUrl}`,
-            serie: `https://vsembed.ru/embed/tv?tmdb=${videoId}&s=${s}&e=${e}&sub_url=${subUrl}`,
+            // ?sub_url=http://localhost:3000/subtitles/test.vtt&sub_label=Kurdish&sub_lang=ku&sub_default=true
+            movie: `https://vaplayer.ru/embed/movie/${videoId}?color=ffd700`,
+            serie: `https://vaplayer.ru/embed/tv/${videoId}/${s}/${e}?color=ffd700`,
+          },
+          two: {
+            // &sub_url=http://localhost:3000/subtitles/test.vtt
+            movie: `https://vsembed.ru/embed/movie?tmdb=${videoId}`,
+            serie: `https://vsembed.ru/embed/tv?tmdb=${videoId}&season=${s}&episode=${e}`,
+          },
+          three: {
+            // ...
+            movie: `https://player.videasy.net/movie/${videoId}?color=ffd700&overlay=true`,
+            serie: `https://player.videasy.net/tv/${videoId}/${s}/${e}?color=ffd700&overlay=true`,
+          },
+          four: {
+            // ?sub_file=http://localhost:3000/subtitles/test.vtt&sub_label=Kurdish
+            movie: `https://vidlink.pro/movie/${videoId}?primaryColor=ffd700&secondaryColor=0028ff`,
+            serie: `https://vidlink.pro/tv/${videoId}/${s}/${e}?primaryColor=ffd700&secondaryColor=0028ff`,
+          },
+          five: {
+            // ?sub_url[]=http://localhost:3000/subtitles/test.vtt&sub_label[]=Kurdish
+            movie: `https://embedmaster.link/j2wmgzaw0so4wj6m/movie/${videoId}`,
+            serie: `https://embedmaster.link/j2wmgzaw0so4wj6m/tv/${videoId}/${s}/${e}`,
           },
         };
 
@@ -125,72 +145,6 @@
           document.getElementById('player-frame').src = targetUrl;
         }
       })();
-
-      /*
-
-          Request movie by IMDB id: https://yourwebsite.com/se_player.php?video_id=tt8385148
-          Request movie by TMDB id: https://yourwebsite.com/se_player.php?video_id=522931&tmdb=1
-          Request episode by IMDB id: https://yourwebsite.com/se_player.php?video_id=tt2861424&s=5&e=5
-          Request episode by TMDB id: https://yourwebsite.com/se_player.php?video_id=60625&tmdb=1&s=5&e=5
-
-          https://multiembed.mov/directstream.php?video_id=tt6791350&sub_url=SUBTITLES_URL&sub_label=SUBTITLES_LABEL
-
-
-          ---
-
-
-          https://vidcore.net/movie/1668364
-
-
-          ---
-
-
-          https://player.videasy.net/movie/1668364
-
-
-          ---
-
-
-          https://vaplayer.ru/embed/movie/980431
-          ?
-          sub_url=http://localhost:3000/subtitles/test.vtt
-          &
-          sub_label=Kurdish
-          &
-          sub_lang=ku
-          &
-          sub_default=true
-
-
-          ---
-
-
-          https://vsembed.ru/embed/movie
-          ?
-          tmdb=980431
-          &amp;
-          sub_url=http://localhost:3000/subtitles/test.vtt
-
-
-          ---
-
-
-          https://embedmaster.link/movie/980431
-          ?
-          sub_url[]=http://localhost:3000/subtitles/test.vtt
-          &
-          sub_label[]=Kurdish
-
-
-          ---
-
-
-          https://vidlink.pro/movie/980431
-          ?
-          sub_file=http://localhost:3000/subtitles/test.vtt
-
-
-          */
     </script>
   </body>
 </html>
