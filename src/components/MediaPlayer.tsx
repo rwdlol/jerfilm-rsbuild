@@ -1,3 +1,4 @@
+import { Play } from 'lucide-react';
 import { useState } from 'react';
 
 interface MediaPlayerProps {
@@ -21,7 +22,23 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
 
   return (
     <div className="w-full flex flex-col gap-4 my-2">
-      {/* 1. Video Player Container with native aspect-video */}
+      {/* 1. Responsive Server Tabs list */}
+      <div className="flex flex-col gap-2 px-1">
+        <span className="text-zinc-500">هەڵبژاردنی سێرڤەر:</span>
+        <div className="flex flex-row overflow-x-auto gap-2 pb-2 scrollbar-none snap-x snap-mandatory">
+          {servers.map((srv) => (
+            <ServerSelector
+              key={srv.id}
+              isSelected={server === srv.id}
+              onClick={() => setServer(srv.id)}
+            >
+              {srv.name}
+            </ServerSelector>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. Video Player Container with native aspect-video */}
       <div className="w-full aspect-video rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl relative">
         {!unlocked ? (
           // Locked screen with professional overlay and English disclaimer
@@ -31,16 +48,16 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
               onClick={() => setUnlocked(true)}
               className="group flex items-center gap-3 bg-gold text-black hover:bg-gold/80 font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-gold/10 hover:shadow-gold/20 active:scale-95 transition-all duration-300 cursor-pointer"
             >
-              <svg
+              <Play
+                size={24}
+                fill="currentColor"
+                stroke="currentColor"
                 className="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              />
               <span>کرتە بکە بۆ بینینی ڤیدیۆ</span>
             </button>
             <div className="hidden md:block max-w-2xl border-t border-zinc-900/60 pt-4 text-center">
-              <p className="text-sm sm:text-sm text-zinc-600 leading-relaxed normal-case tracking-normal">
+              <p className="text-sm sm:text-sm text-zinc-400 leading-relaxed normal-case tracking-normal">
                 Disclaimer: This is an open-source, educational project. We do
                 not host, control, or distribute any media streams. All content
                 is accessed via independent third-party servers which we cannot
@@ -62,22 +79,6 @@ export default function MediaPlayer({ type, id, s, e }: MediaPlayerProps) {
             allowFullScreen
           ></iframe>
         )}
-      </div>
-
-      {/* 2. Responsive Server Tabs list */}
-      <div className="flex flex-col gap-2 px-1">
-        <span className="text-zinc-500">هەڵبژاردنی سێرڤەر:</span>
-        <div className="flex flex-row overflow-x-auto gap-2 pb-2 scrollbar-none snap-x snap-mandatory">
-          {servers.map((srv) => (
-            <ServerSelector
-              key={srv.id}
-              isSelected={server === srv.id}
-              onClick={() => setServer(srv.id)}
-            >
-              {srv.name}
-            </ServerSelector>
-          ))}
-        </div>
       </div>
     </div>
   );

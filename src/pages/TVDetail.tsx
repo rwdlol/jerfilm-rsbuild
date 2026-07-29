@@ -159,27 +159,7 @@ export default function TVDetail() {
         </div>
       </section>
 
-      {/* 3. Media Player Section */}
-      {data?.id && currentSeason !== null && currentEpisode !== null && (
-        <section className="flex flex-col" id="player">
-          <div className="flex flex-col gap-2 bg-zinc-950 border border-zinc-900 p-4 rounded-3xl shadow-2xl">
-            <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-gold animate-pulse" />
-                سەیرکردنی: سیزۆنی {currentSeason} - ئەڵقەی {currentEpisode}
-              </h2>
-            </div>
-            <MediaPlayer
-              type="tv"
-              id={data.id}
-              s={currentSeason}
-              e={currentEpisode}
-            />
-          </div>
-        </section>
-      )}
-
-      {/* 4. Detailed Metadata Cards Grid */}
+      {/* 3. Detailed Metadata Cards Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-zinc-900/30 backdrop-blur-sm border border-zinc-800/80 p-4 rounded-2xl flex flex-col gap-2">
           <h3 className="text-white border-b border-zinc-800/60 pb-2 mb-1">
@@ -230,6 +210,26 @@ export default function TVDetail() {
           </p>
         </div>
       </section>
+
+      {/* 4. Media Player Section */}
+      {data?.id && currentSeason !== null && currentEpisode !== null && (
+        <section className="flex flex-col" id="player">
+          <div className="flex flex-col gap-2 bg-zinc-950 border border-zinc-900 p-4 rounded-3xl shadow-2xl">
+            <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-gold animate-pulse" />
+                سەیرکردنی: سیزۆنی {currentSeason} - ئەڵقەی {currentEpisode}
+              </h2>
+            </div>
+            <MediaPlayer
+              type="tv"
+              id={data.id}
+              s={currentSeason}
+              e={currentEpisode}
+            />
+          </div>
+        </section>
+      )}
 
       {/* 5. Seasons & Episodes Section */}
       <section className="flex flex-col gap-6">

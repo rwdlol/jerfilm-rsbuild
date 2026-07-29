@@ -95,7 +95,7 @@
         var params = new URLSearchParams(window.location.search);
         var videoId = params.get('video_id') || '';
         var serverName = params.get('server') || 'one';
-        var type = params.get('type') || 'movie'; // 'movie' or 'serie'
+        var type = params.get('type') || 'movie';
         var s = params.get('s') || '1'; // season
         var e = params.get('e') || '1'; // episode
 
@@ -106,27 +106,27 @@
           one: {
             // ?sub_url=http://localhost:3000/subtitles/test.vtt&sub_label=Kurdish&sub_lang=ku&sub_default=true
             movie: `https://vaplayer.ru/embed/movie/${videoId}?color=ffd700`,
-            serie: `https://vaplayer.ru/embed/tv/${videoId}/${s}/${e}?color=ffd700`,
+            tv: `https://vaplayer.ru/embed/tv/${videoId}/${s}/${e}?color=ffd700`,
           },
           two: {
             // &sub_url=http://localhost:3000/subtitles/test.vtt
             movie: `https://vsembed.ru/embed/movie?tmdb=${videoId}`,
-            serie: `https://vsembed.ru/embed/tv?tmdb=${videoId}&season=${s}&episode=${e}`,
+            tv: `https://vsembed.ru/embed/tv?tmdb=${videoId}&season=${s}&episode=${e}`,
           },
           three: {
             // ...
             movie: `https://player.videasy.net/movie/${videoId}?color=ffd700&overlay=true`,
-            serie: `https://player.videasy.net/tv/${videoId}/${s}/${e}?color=ffd700&overlay=true`,
+            tv: `https://player.videasy.net/tv/${videoId}/${s}/${e}?color=ffd700&overlay=true`,
           },
           four: {
             // ?sub_file=http://localhost:3000/subtitles/test.vtt&sub_label=Kurdish
             movie: `https://vidlink.pro/movie/${videoId}?primaryColor=ffd700&secondaryColor=0028ff`,
-            serie: `https://vidlink.pro/tv/${videoId}/${s}/${e}?primaryColor=ffd700&secondaryColor=0028ff`,
+            tv: `https://vidlink.pro/tv/${videoId}/${s}/${e}?primaryColor=ffd700&secondaryColor=0028ff`,
           },
           five: {
             // ?sub_url[]=http://localhost:3000/subtitles/test.vtt&sub_label[]=Kurdish
             movie: `https://embedmaster.link/j2wmgzaw0so4wj6m/movie/${videoId}`,
-            serie: `https://embedmaster.link/j2wmgzaw0so4wj6m/tv/${videoId}/${s}/${e}`,
+            tv: `https://embedmaster.link/j2wmgzaw0so4wj6m/tv/${videoId}/${s}/${e}`,
           },
         };
 
@@ -134,8 +134,8 @@
         var targetUrl = '';
         var selectedServer = serverConfig[serverName] || serverConfig['one'];
 
-        if (type === 'serie') {
-          targetUrl = selectedServer.serie;
+        if (type === 'tv') {
+          targetUrl = selectedServer.tv;
         } else {
           targetUrl = selectedServer.movie;
         }

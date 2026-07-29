@@ -94,10 +94,8 @@ export default function App() {
         <Route path="/collection/:id" element={<>collection details</>} />
         <Route path="*" element={<NotFound />} />
       </Route>
-
-      <Route path="/movie/:id/socialmedia" element={<ImageGenerator />} />
-
-      <Route path="/tv/:id/socialmedia" element={<ImageGenerator />} />
+      <Route path="/movie/:id/poster" element={<ImageGenerator />} />
+      <Route path="/tv/:id/poster" element={<ImageGenerator />} />
     </Routes>
   );
 }
