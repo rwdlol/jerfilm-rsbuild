@@ -125,6 +125,72 @@
           document.getElementById('player-frame').src = targetUrl;
         }
       })();
+
+      /*
+
+          Request movie by IMDB id: https://yourwebsite.com/se_player.php?video_id=tt8385148
+          Request movie by TMDB id: https://yourwebsite.com/se_player.php?video_id=522931&tmdb=1
+          Request episode by IMDB id: https://yourwebsite.com/se_player.php?video_id=tt2861424&s=5&e=5
+          Request episode by TMDB id: https://yourwebsite.com/se_player.php?video_id=60625&tmdb=1&s=5&e=5
+
+          https://multiembed.mov/directstream.php?video_id=tt6791350&sub_url=SUBTITLES_URL&sub_label=SUBTITLES_LABEL
+
+
+          ---
+
+
+          https://vidcore.net/movie/1668364
+
+
+          ---
+
+
+          https://player.videasy.net/movie/1668364
+
+
+          ---
+
+
+          https://vaplayer.ru/embed/movie/980431
+          ?
+          sub_url=http://localhost:3000/subtitles/test.vtt
+          &
+          sub_label=Kurdish
+          &
+          sub_lang=ku
+          &
+          sub_default=true
+
+
+          ---
+
+
+          https://vsembed.ru/embed/movie
+          ?
+          tmdb=980431
+          &amp;
+          sub_url=http://localhost:3000/subtitles/test.vtt
+
+
+          ---
+
+
+          https://embedmaster.link/movie/980431
+          ?
+          sub_url[]=http://localhost:3000/subtitles/test.vtt
+          &
+          sub_label[]=Kurdish
+
+
+          ---
+
+
+          https://vidlink.pro/movie/980431
+          ?
+          sub_file=http://localhost:3000/subtitles/test.vtt
+
+
+          */
     </script>
   </body>
 </html>
