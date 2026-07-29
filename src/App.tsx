@@ -5,6 +5,8 @@ import NotFound from './components/NotFound';
 import LoadingScreen from './components/LoadingScreen';
 import PersonDetail from './pages/PersonDetail';
 import PersonPage from './pages/PersonPage';
+import About from './pages/About';
+import ImageGenerator from './pages/socialmedia/ImageGenerator';
 
 // Lazy loaded page components
 const Home = lazy(() => import('./pages/Home'));
@@ -22,6 +24,14 @@ export default function App() {
           element={
             <Suspense fallback={<LoadingScreen />}>
               <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <About />
             </Suspense>
           }
         />
@@ -84,6 +94,10 @@ export default function App() {
         <Route path="/collection/:id" element={<>collection details</>} />
         <Route path="*" element={<NotFound />} />
       </Route>
+
+      <Route path="/movie/:id/socialmedia" element={<ImageGenerator />} />
+
+      <Route path="/tv/:id/socialmedia" element={<ImageGenerator />} />
     </Routes>
   );
 }

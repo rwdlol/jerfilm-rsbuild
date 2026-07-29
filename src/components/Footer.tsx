@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Logo and About Section */}
         <div className="col-span-1 md:col-span-2 flex flex-col gap-3 mb-4 md:mb-0">
           <h2 className="text-2xl text-white tracking-tight">
-            JerFilm<span className="text-gold">.VIP</span>
+            JerFilm.<span className="text-gold">VIP</span>
           </h2>
           <p className="max-w-md text-zinc-400 leading-relaxed">
             گەورەترین ماڵپەڕی کوردی بۆ فیلم و زنجیرەی جیهانی بە ژێرنووسی کوردی.
@@ -27,6 +27,14 @@ export default function Footer() {
                 className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 ماڵەوە
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
+              >
+                دەربارەی ئێمە
               </Link>
             </li>
             <li>
@@ -106,7 +114,7 @@ export default function Footer() {
         <p className="text-zinc-400">
           &copy; {new Date().getFullYear()}{' '}
           <span className="text-white">
-            JerFilm<span className="text-gold">.VIP</span>
+            JerFilm.<span className="text-gold">VIP</span>
           </span>{' '}
           -{' '}
           <Link

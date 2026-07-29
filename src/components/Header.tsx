@@ -22,7 +22,7 @@ export default function Header() {
             to="/"
             className="text-2xl text-white tracking-tight select-none"
           >
-            JerFilm<span className="text-gold">.VIP</span>
+            JerFilm.<span className="text-gold">VIP</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -31,6 +31,8 @@ export default function Header() {
             <NavLink to="/movie">فیلمەکان</NavLink>
             <NavLink to="/tv">زنجیرە</NavLink>
             <NavLink to="/person">ئەکتەرەکان</NavLink>
+            <NavLink to="/about">دەربارەی ئێمە</NavLink>
+
             {/* <NavLink to="/collection">کۆکراوەکان</NavLink> */}
           </nav>
         </div>
@@ -63,6 +65,9 @@ export default function Header() {
             </MobileNavLink>
             <MobileNavLink to="/person" onClick={() => setIsMenuOpen(false)}>
               ئەکتەرەکان
+            </MobileNavLink>
+            <MobileNavLink to="/about" onClick={() => setIsMenuOpen(false)}>
+              دەربارەی ئێمە
             </MobileNavLink>
             {/* <MobileNavLink to="/collection" onClick={() => setIsMenuOpen(false)}>کۆکراوەکان</MobileNavLink> */}
           </nav>
