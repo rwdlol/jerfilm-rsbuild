@@ -123,18 +123,15 @@ export default function ImageGenerator() {
       {/* Season Selection Pills (Only visible for TV Shows) */}
       {isTV && data.seasons && data.seasons.length > 0 && (
         <div
-          className="w-full max-w-7xl px-4 flex flex-col gap-2 text-right"
+          className="w-full max-w-7xl px-4 flex flex-col items-center justify-center gap-2 text-right"
           dir="rtl"
         >
-          <span className="text-xs font-semibold text-zinc-500">
-            دەستنیشانکردنی وەرزی بڵاوکراوە:
-          </span>
-          <div className="flex flex-row overflow-x-auto gap-2 pb-2 scrollbar-none">
+          <div className="flex flex-row items-center justify-center overflow-x-auto gap-2 pb-2 scrollbar-none">
             {data.seasons.map((season: any) => (
               <button
                 key={season.id}
                 onClick={() => setSelectedSeason(season.season_number)}
-                className={`shrink-0 text-xs font-bold py-2.5 px-4 rounded-xl transition cursor-pointer border ${
+                className={`shrink-0 text-xl font-bold py-2.5 px-4 rounded-xl transition cursor-pointer border ${
                   selectedSeason === season.season_number
                     ? 'bg-gold text-black border-gold shadow-md'
                     : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
@@ -279,76 +276,57 @@ export default function ImageGenerator() {
               </div>
 
               {/* Right Column: TV Series Metadata details (Matching design 2) */}
-              <div
-                className="flex flex-col gap-6 text-right"
-                dir="rtl"
-              >
+              <div className="flex flex-col gap-6 text-right" dir="rtl">
                 <div>
-                  <h3 className="text-3xl font-black text-white leading-tight">
+                  <h3 className="text-6xl font-black text-white leading-tight">
                     {title}
                   </h3>
-                  <p className="text-sm font-semibold text-zinc-500 mt-1  uppercase tracking-wide">
+                  <p className="text-2xl font-semibold text-zinc-200 mt-1  uppercase tracking-wide">
                     {seasonData?.name || `وەرزی ${selectedSeason}`} —{' '}
                     {originalTitle}
                   </p>
                 </div>
 
                 {/* Metadata list */}
-                <div className="flex flex-col gap-2.5 bg-zinc-900/40 border border-zinc-800 p-5 rounded-2xl text-xs text-zinc-300">
+                <div className="flex flex-col gap-5 bg-zinc-900/40 border border-zinc-800 p-5 rounded-2xl text-xl text-zinc-300">
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-500">وەرگێڕان:</span>
-                    <span className="font-bold text-white">
-                      هەستیار | جێرفیلم
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between border-t border-zinc-900 pt-2.5">
-                    <span className="text-zinc-500">ژانەری زنجیرە:</span>
-                    <span className="font-bold text-zinc-200">
+                    <span className="text-zinc-200">ژانەری زنجیرە:</span>
+                    <span className="text-white">
                       {genresList.slice(0, 3).join(' - ')}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-t border-zinc-900 pt-2.5">
-                    <span className="text-zinc-500">بارودۆخ:</span>
-                    <span className="font-bold text-zinc-200">
+                  <div className="flex items-center justify-between border-t border-zinc-800 pt-3">
+                    <span className="text-zinc-200">بارودۆخ:</span>
+                    <span className="text-white">
                       {data.status ? tToSorani(data.status) : 'نادیار'}
                     </span>
                   </div>
                 </div>
 
                 {/* Grid of stats boxes */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="bg-zinc-900/60 border border-zinc-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-1">
-                    <span className="text-[10px] text-zinc-500 font-bold">
-                      ژمارەی وەرز
-                    </span>
-                    <span className="text-2xl font-black text-white">
-                      {selectedSeason}
+                <div className="grid grid-cols-3 gap-3 text-xl text-white">
+                  <div className=" bg-zinc-900/60 border border-zinc-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2">
+                    <span>وەرزی</span>
+                    <span className="text-5xl">{selectedSeason}</span>
+                  </div>
+                  <div className="bg-zinc-900/60 border border-zinc-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2">
+                    <span>ژمارەی ئەڵقەکان</span>
+                    <span className="text-5xl">
+                      {seasonData?.episodes.length || '0'}
                     </span>
                   </div>
-                  <div className="bg-zinc-900/60 border border-zinc-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-1">
-                    <span className="text-[10px] text-zinc-500 font-bold">
-                      ژمارەی ئەڵقەکان
-                    </span>
-                    <span className="text-2xl font-black text-white">
-                      {seasonData?.episodes ? seasonData.episodes.length : '12'}
-                    </span>
-                  </div>
-                  <div className="bg-zinc-900/60 border border-zinc-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-1">
-                    <span className="text-[10px] text-zinc-500 font-bold">
-                      گشتی وەرزەکان
-                    </span>
-                    <span className="text-2xl font-black text-white">
-                      {data.number_of_seasons}
-                    </span>
+                  <div className="bg-zinc-900/60 border border-zinc-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2">
+                    <span>گشتی وەرزەکان</span>
+                    <span className="text-5xl">{data.number_of_seasons}</span>
                   </div>
                 </div>
 
                 {/* Overview/Summary Box */}
-                <div className="flex flex-col gap-1.5">
-                  <h4 className="text-xs font-bold text-zinc-500">
+                <div className="flex flex-col gap-2">
+                  <h4 className="text-xl font-bold text-zinc-500">
                     کورتەی داتا:
                   </h4>
-                  <p className="text-zinc-400 text-xs leading-relaxed line-clamp-4">
+                  <p className="text-zinc-400 text-lg leading-relaxed line-clamp-4">
                     {activeOverview || 'بۆ ئەم وەرزە کورتەباس بەردەست نییە.'}
                   </p>
                 </div>
