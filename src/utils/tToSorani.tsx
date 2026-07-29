@@ -8,7 +8,11 @@ const DICTIONARY: Record<string, string> = {
   Popularity: 'ناوبانگ',
   Overview: 'کورتە',
 
+  'Returning Series': 'گەڕانەوەی بەشەکان',
+  Ended: 'کۆتایی هات',
+
   Action: 'ئاکشن',
+  'Action & Adventure': 'ئاکشن و سەرکێشی',
   Adventure: 'سەرکێشی',
   Animation: 'ئەنیمەیشن',
   Comedy: 'کۆمیدی',
@@ -22,6 +26,14 @@ const DICTIONARY: Record<string, string> = {
   Music: 'مۆسیقا',
   Mystery: 'نهێنیئامێز',
   Romance: 'ڕۆمانسی',
+  Kids: 'منداڵان',
+  News: 'هەواڵ',
+  Reality: 'ڕیالیستی',
+  Talk: 'قسەکردن',
+  'Sci-Fi': 'زانستی خەیاڵی',
+  Soap: 'سۆپ',
+  'War & Politics': 'جەنگ و سیاسەت',
+  'Sci-Fi & Fantasy': 'زانستی خەیاڵی و فانتازیا',
   'Science Fiction': 'زانستی خەیاڵی',
   'TV Movie': 'فیلمی تەلەفزیۆنی',
   Thriller: 'سیخوڕی / پڕشۆک',
@@ -29,11 +41,13 @@ const DICTIONARY: Record<string, string> = {
   Western: 'ڕۆژئاوایی',
 
   US: 'ئەمریکا',
+  'United States of America': 'ئەمریکا',
   GB: 'بریتانیا',
   CA: 'کەنەدا',
   FR: 'فەرەنسا',
   DE: 'ئەڵمانیا',
   JP: 'ژاپۆن',
+  Japan: 'ژاپۆن',
   KR: 'کۆریای باشوور',
   ES: 'ئیسپانیا',
   IT: 'ئیتالیا',
@@ -60,6 +74,17 @@ const DICTIONARY: Record<string, string> = {
   da: 'دانمارکی',
   el: 'یۆنانیکی',
   ku: 'کوردی',
+
+  Acting: 'ئەکتەر',
+  Directing: 'ڕێکخستن',
+  Writing: 'نووسین',
+  Production: 'بەرھەمھێنان',
+  Sound: 'دەنگ',
+  Camera: 'کامێرا',
+  Editing: 'دەستکاری',
+  Art: 'هونەر',
+  Costume: 'کۆستۆم',
+  VisualEffects: 'ئەفێکتەکان',
 };
 
 /**

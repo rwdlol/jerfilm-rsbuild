@@ -3,25 +3,30 @@ import { Link } from 'react-router';
 
 export default function Footer() {
   return (
-    <footer className="relative z-0 flex flex-col w-full h-fit bg-zinc-900">
-      <div className="grid md:grid-cols-4 gap-5 py-10 w-full max-w-7xl mx-auto px-4 h-fit">
-        <div className="col-span-2 flex flex-col gap-2 mb-5 md:mb-0">
-          <h2 className="text-2xl font-bold text-white">
+    <footer className="relative z-0 flex flex-col w-full h-fit bg-zinc-950 border-t border-zinc-900">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12 w-full max-w-7xl mx-auto px-4 h-fit">
+        {/* Logo and About Section */}
+        <div className="col-span-1 md:col-span-2 flex flex-col gap-3 mb-4 md:mb-0">
+          <h2 className="text-2xl text-white tracking-tight">
             JerFilm<span className="text-gold">.VIP</span>
           </h2>
-          <p className="max-w-md">
+          <p className="max-w-md text-zinc-400 text-sm leading-relaxed">
             گەورەترین ماڵپەڕی کوردی بۆ فیلم و زنجیرەی جیهانی بە ژێرنووسی کوردی.
             خێراترین سیستەمی وەرگێڕانی بێ ڕێکلام. ئیتر چاوەڕوانی نییە، سیستەمی
-            ai ی ئۆتۆماتیکی هەموو شتێکت بۆ وەرگێڕاوە
+            ai ی ئۆتۆماتیکی هەموو شتێکت بۆ وەرگێڕاوە.
           </p>
         </div>
-        <div className="flex flex-col gap-2">
-          <h3 className="uppercase">لاپەڕەکان</h3>
-          <ul>
+
+        {/* Quick Links Column */}
+        <div className="flex flex-col gap-3">
+          <h3 className="text-white font-bold text-sm tracking-wide">
+            لاپەڕەکان
+          </h3>
+          <ul className="flex flex-col gap-2.5 text-sm">
             <li>
               <Link
                 to="/"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 ماڵەوە
               </Link>
@@ -29,7 +34,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/movie"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 فیلمەکان
               </Link>
@@ -37,7 +42,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/tv"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 زنجیرە
               </Link>
@@ -45,7 +50,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/person"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 ئەکتەرەکان
               </Link>
@@ -53,20 +58,24 @@ export default function Footer() {
             <li>
               <Link
                 to="/collection"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 کۆکراوەکان
               </Link>
             </li>
           </ul>
         </div>
-        <div className="flex flex-col gap-2">
-          <h3>فۆڵۆومان بکەن لە...</h3>
-          <ul>
+
+        {/* Social Links Column */}
+        <div className="flex flex-col gap-3">
+          <h3 className="text-white font-bold text-sm tracking-wide">
+            فۆڵۆومان بکەن لە...
+          </h3>
+          <ul className="flex flex-col gap-2.5 text-sm">
             <li>
               <Link
                 to="/"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 TikTok
               </Link>
@@ -74,7 +83,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 Instagram
               </Link>
@@ -82,7 +91,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/"
-                className="text-zinc-400 hover:text-gold hover:underline"
+                className="text-zinc-400 hover:text-gold transition-colors duration-200"
               >
                 GitHub
               </Link>
@@ -90,8 +99,13 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="p-2 py-5 flex gap-4 flex-col items-center justify-center text-center">
-        <p dir="ltr">
+
+      {/* Bottom Copyright and Legal Bar */}
+      <div
+        dir="ltr"
+        className="border-t border-zinc-900/60 bg-zinc-950/40 py-8 px-4 flex flex-col gap-4 items-center justify-center text-center"
+      >
+        <p className="text-xs sm:text-sm text-zinc-400">
           &copy; {new Date().getFullYear()}{' '}
           <span className="text-white">
             JerFilm<span className="text-gold">.VIP</span>
@@ -99,12 +113,14 @@ export default function Footer() {
           -{' '}
           <Link
             to="https://github.com/rwdlol/jerfilm-vip"
-            className="inline-flex items-center gap-1 underline hover:no-underline"
+            className="inline-flex items-center gap-1 text-zinc-300 hover:text-gold underline hover:no-underline transition-colors duration-200"
           >
-            <span>Open Source Project</span> <ExternalLink size={14} />
+            <span>Open Source Project</span> <ExternalLink size={12} />
           </Link>
         </p>
-        <p dir="ltr" className="max-w-xl text-sm text-zinc-400">
+
+        {/* Legal Disclaimer in English */}
+        <p className="max-w-2xl text-sm text-zinc-500 leading-relaxed">
           THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY! This site does not
           store any files and we do not track users; it only links to
           third-party media. Hosted on GitHub Pages. We use the TMDB API but are

@@ -18,9 +18,7 @@ export default function About() {
         contact@jerfilm.vip.
       </p>
       <h2>Idea</h2>
-      <p>
-        
-      </p>
+      <p></p>
     </>
   );
 }

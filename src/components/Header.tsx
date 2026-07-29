@@ -1,49 +1,70 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const closeMenu = () => setIsMenuOpen(false);
+  const location = useLocation();
+
+  // Reset menu state during render if location changed
+  const [prevPath, setPrevPath] = useState(location.pathname);
+  if (prevPath !== location.pathname) {
+    setPrevPath(location.pathname);
+    setIsMenuOpen(false);
+  }
 
   return (
-    <header className="relative z-40 h-fit min-h-16 w-full max-w-7xl mx-auto bg-zinc-950 flex items-center gap-4 px-4">
-      <h2 className="relative z-10 text-xl font-bold text-white">
-        JerFilm<span className="text-gold">.VIP</span>
-      </h2>
-      <nav className="hidden md:flex items-center w-fit h-fit">
-        <NavLink to="/">ماڵەوە</NavLink>
-        <NavLink to="/movie">فیلمەکان</NavLink>
-        <NavLink to="/tv">زنجیرە</NavLink>
-        <NavLink to="/person">ئەکتەرەکان</NavLink>
-        <NavLink to="/collection">کۆکراوەکان</NavLink>
-      </nav>
-      <button
-        type="button"
-        className="relative z-10  ms-auto md:hidden text-white"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-label={isMenuOpen ? 'مێنۆ دابخە' : 'مێنۆ بکەرەوە'}
-      >
-        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+    <header className="relative z-50 w-full bg-zinc-950/90 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto h-16 flex items-center justify-between px-4">
+        {/* Logo and Desktop Navigation */}
+        <div className="flex items-center gap-6">
+          <Link
+            to="/"
+            className="text-2xl text-white tracking-tight select-none"
+          >
+            JerFilm<span className="text-gold">.VIP</span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            <NavLink to="/">ماڵەوە</NavLink>
+            <NavLink to="/movie">فیلمەکان</NavLink>
+            <NavLink to="/tv">زنجیرە</NavLink>
+            <NavLink to="/person">ئەکتەرەکان</NavLink>
+            {/* <NavLink to="/collection">کۆکراوەکان</NavLink> */}
+          </nav>
+        </div>
+
+        {/* Actions Section */}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className="md:hidden flex items-center justify-center p-2.5 text-zinc-300 hover:text-white rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:bg-zinc-800/80 transition-all duration-200 cursor-pointer"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'مێنۆ دابخە' : 'مێنۆ بکەرەوە'}
+          >
+            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Smooth Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute z-0 right-0 top-0 left-0 pt-10 w-full h-fit bg-zinc-950/25 backdrop-blur-2xl">
-          <nav className="grid grid-cols-2 gap-4 items-center w-full min-w-60 h-full p-2 py-4">
-            <NavLink to="/" onClick={closeMenu}>
+        <div className="md:hidden absolute top-16 left-0 right-0 w-full bg-zinc-950/90 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
+          <nav className="flex flex-col gap-1 p-4" dir="rtl">
+            <MobileNavLink to="/" onClick={() => setIsMenuOpen(false)}>
               ماڵەوە
-            </NavLink>
-            <NavLink to="/movie" onClick={closeMenu}>
+            </MobileNavLink>
+            <MobileNavLink to="/movie" onClick={() => setIsMenuOpen(false)}>
               فیلمەکان
-            </NavLink>
-            <NavLink to="/tv" onClick={closeMenu}>
-              زنجیرە
-            </NavLink>
-            <NavLink to="/person" onClick={closeMenu}>
+            </MobileNavLink>
+            <MobileNavLink to="/tv" onClick={() => setIsMenuOpen(false)}>
+              زنجیرەکان
+            </MobileNavLink>
+            <MobileNavLink to="/person" onClick={() => setIsMenuOpen(false)}>
               ئەکتەرەکان
-            </NavLink>
-            <NavLink to="/collection" onClick={closeMenu}>
-              کۆکراوەکان
-            </NavLink>
+            </MobileNavLink>
+            {/* <MobileNavLink to="/collection" onClick={() => setIsMenuOpen(false)}>کۆکراوەکان</MobileNavLink> */}
           </nav>
         </div>
       )}
@@ -51,20 +72,33 @@ export default function Header() {
   );
 }
 
-function NavLink({
+// NavLink for Desktop Header
+function NavLink({ children, to }: { children: React.ReactNode; to: string }) {
+  return (
+    <Link
+      to={to}
+      className="text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg transition-all duration-200 hover:bg-zinc-900/40"
+    >
+      {children}
+    </Link>
+  );
+}
+
+// MobileNavLink
+function MobileNavLink({
   children,
   to,
   onClick,
 }: {
   children: React.ReactNode;
   to: string;
-  onClick?: () => void;
+  onClick: () => void;
 }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="flex text-start items-center justify-star w-full md:w-fit md:text-base text-xl md:p-1 md:px-2 px-4 py-2 rounded-xl hover:bg-white/15"
+      className="flex items-center text-start text-zinc-300 hover:text-white text-base w-full px-4 py-3 rounded-xl hover:bg-zinc-900/60 transition-colors duration-150"
     >
       {children}
     </Link>

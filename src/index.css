@@ -22,6 +22,15 @@
   --font-rabar22: Rabar022, sans-serif;
 }
 
+::selection {
+  @apply bg-gold text-zinc-950;
+}
+
+img,
+svg {
+  user-select: none;
+}
+
 * {
   @apply scrollbar-thin scroll-smooth scrollbar-thumb-zinc-600 scrollbar-track-zinc-900;
 }

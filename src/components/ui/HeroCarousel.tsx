@@ -40,7 +40,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
     }
   };
 
-  // Autoplay
+  // Autoplay functionality
   useEffect(() => {
     if (slides.length <= 1) return;
 
@@ -75,7 +75,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   };
 
   return (
-    <div className="relative w-full h-auto aspect-10/4 border border-zinc-800 overflow-hidden select-none rounded-2xl">
+    <div className="relative w-full aspect-video md:aspect-10/4 border border-zinc-900 overflow-hidden select-none rounded-3xl bg-zinc-950">
       <div
         ref={containerRef}
         onScroll={handleScroll}
@@ -93,14 +93,15 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
         {slides.map((slide) => {
           let imageUrl: string;
           if (slide.backdrop_path) {
-            imageUrl = 'https://image.tmdb.org/t/p/w780' + slide.backdrop_path;
+            imageUrl =
+              'https://image.tmdb.org/t/p/original' + slide.backdrop_path;
           } else {
             if (slide.poster_path) {
               if (slide.poster_path.startsWith('/static/')) {
                 imageUrl = slide.poster_path;
               } else {
                 imageUrl =
-                  'https://image.tmdb.org/t/p/w780' + slide.poster_path;
+                  'https://image.tmdb.org/t/p/original' + slide.poster_path;
               }
             } else {
               imageUrl =
@@ -112,38 +113,42 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
             <div
               key={slide.id}
               className="w-full min-w-full h-full snap-start shrink-0 relative overflow-hidden"
+              dir="rtl"
             >
+              {/* Slide image backdrop */}
               <img
                 src={imageUrl}
                 alt={slide.title}
                 title={slide.title}
                 loading="lazy"
-                fetchPriority="auto"
                 draggable={false}
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-50 md:opacity-75"
               />
 
-              <div className="absolute inset-0 bg-linear-to-l from-zinc-950/90 via-zinc-950/50 to-transparent" />
+              {/* Seamless rich overlays (Vertical and Horizontal RTL Gradients) */}
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-zinc-950/40 to-zinc-950/95" />
               <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent opacity-90" />
 
+              {/* Text content details */}
               <div className="relative z-10 max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center">
                 <div className="max-w-xl flex flex-col gap-4 w-fit">
-                  {/* <span className="inline-block px-3 py-1 mb-3 text-sm bg-zinc-100/10 border border-zinc-100/20 rounded-full text-zinc-100 backdrop-blur-md">
-                    testing
-                  </span> */}
-                  <h1 className="text-2xl md:text-4xl text-zinc-100 leading-tight drop-shadow">
+                  <h1 className="text-2xl md:text-4xl lg:text-5xl text-white leading-tight drop-shadow-md">
                     {slide.title}
                   </h1>
-                  <p className="hidden md:block text-base text-gray-300 mb-6 line-clamp-3 leading-relaxed">
-                    {slide.overview}
-                  </p>
+
+                  {slide.overview && (
+                    <p className="text-sm md:text-sm lg:text-base text-zinc-300 line-clamp-2 md:line-clamp-3 leading-relaxed">
+                      {slide.overview}
+                    </p>
+                  )}
+
                   {slide.cta_text && slide.cta_link && (
                     <Link
                       to={slide.cta_link}
-                      className={`rounded-full w-fit font-bold p-2 px-4 ${
+                      className={`rounded-2xl w-fit font-bold py-2.5 px-6 text-sm transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-95 ${
                         slide.cta_type === 'gold'
-                          ? 'text-zinc-950 bg-gold ring-2 ring-gold ring-offset-2 ring-offset-zinc-950'
-                          : 'bg-zinc-100 text-zinc-950'
+                          ? 'text-zinc-950 bg-gold hover:bg-gold/80 shadow-gold/10'
+                          : 'bg-white/10 hover:bg-white/20 border border-white/20 text-white backdrop-blur-md'
                       }`}
                     >
                       {slide.cta_text}
@@ -156,15 +161,16 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
         })}
       </div>
 
-      <div className="absolute bottom-4 inset-x-0 flex justify-end px-4 gap-2 z-20 pointer-events-auto">
+      {/* Modern Pill Slide Indicators placed in standard left corner */}
+      <div className="absolute bottom-6 left-6 md:left-12 flex gap-2 z-20 pointer-events-auto">
         {slides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => scrollToSlide(idx)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
               idx === activeIdx
-                ? 'w-8 bg-zinc-100'
-                : 'w-2.5 bg-zinc-100/40 hover:bg-zinc-100/70'
+                ? 'w-6 bg-gold'
+                : 'w-2 bg-zinc-100/30 hover:bg-zinc-100/60'
             }`}
             aria-label={`Slide ${idx + 1}`}
           />
