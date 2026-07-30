@@ -44,32 +44,41 @@ export const MovieDetailView: React.FC<MovieDetailViewProps> = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchAll() {
       try {
         setLoading(true);
-        const [movieData, creditsData, videosData, recsData] = await Promise.all([
-          getMovieDetails(movieId),
-          getCredits('movie', movieId),
-          getVideos('movie', movieId),
-          getRecommendations('movie', movieId),
-        ]);
+        const movieData = await getMovieDetails(movieId);
+        if (isMounted) setMovie(movieData);
 
-        setMovie(movieData);
-        setCast((creditsData.cast || []).slice(0, 15));
+        try {
+          const [creditsData, videosData, recsData] = await Promise.all([
+            getCredits('movie', movieId).catch(() => ({ cast: [], crew: [] })),
+            getVideos('movie', movieId).catch(() => ({ results: [] })),
+            getRecommendations('movie', movieId).catch(() => ({ results: [] })),
+          ]);
 
-        const officialTrailer = (videosData.results || []).find(
-          (v) => v.type === 'Trailer' && v.site === 'YouTube'
-        ) || (videosData.results || [])[0];
-        setTrailer(officialTrailer || null);
-
-        setRecommendations(recsData.results || []);
+          if (isMounted) {
+            setCast((creditsData.cast || []).slice(0, 15));
+            const officialTrailer = (videosData.results || []).find(
+              (v) => v.type === 'Trailer' && v.site === 'YouTube'
+            ) || (videosData.results || [])[0];
+            setTrailer(officialTrailer || null);
+            setRecommendations(recsData.results || []);
+          }
+        } catch (e) {
+          console.warn('Sub-details error:', e);
+        }
       } catch (err) {
         console.error('Failed to load movie details:', err);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     }
     fetchAll();
+    return () => {
+      isMounted = false;
+    };
   }, [movieId]);
 
   if (loading) {

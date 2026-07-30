@@ -39,22 +39,37 @@ export const WatchMovieView: React.FC<WatchMovieViewProps> = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchMovieData() {
       try {
         setLoading(true);
-        const [movieData, recsData] = await Promise.all([
-          getMovieDetails(movieId),
-          getRecommendations('movie', movieId),
-        ]);
-        setMovie(movieData);
-        setRecommendations(recsData.results || []);
+        // Fetch movie details first
+        const movieData = await getMovieDetails(movieId);
+        if (isMounted) {
+          setMovie(movieData);
+        }
+
+        // Fetch recommendations safely in background
+        try {
+          const recsData = await getRecommendations('movie', movieId);
+          if (isMounted) {
+            setRecommendations(recsData.results || []);
+          }
+        } catch (e) {
+          console.warn('Failed to fetch recommendations:', e);
+        }
       } catch (err) {
         console.error('Failed to load watch movie data:', err);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
     fetchMovieData();
+    return () => {
+      isMounted = false;
+    };
   }, [movieId]);
 
   const handleRefreshIframe = () => {
@@ -147,9 +162,11 @@ export const WatchMovieView: React.FC<WatchMovieViewProps> = ({
             key={iframeKey}
             src={streamUrl}
             title={movie.title}
+            style={{ width: '100%', height: '100%' }}
+            frameBorder="0"
+            allow="autoplay *; fullscreen *; picture-in-picture *; encrypted-media *"
+            referrerPolicy="no-referrer"
             allowFullScreen
-            allow="autoplay; encrypted-media; picture-in-picture"
-            className="w-full h-full border-0"
           />
         </div>
       </div>

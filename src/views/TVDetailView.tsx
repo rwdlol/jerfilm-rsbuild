@@ -50,32 +50,43 @@ export const TVDetailView: React.FC<TVDetailViewProps> = ({
   const resumeEpisode = savedItem?.lastWatchedEpisode || 1;
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchShowDetails() {
       try {
         setLoading(true);
-        const [showRes, creditsRes, recsRes] = await Promise.all([
-          getTVDetails(tvId),
-          getCredits('tv', tvId),
-          getRecommendations('tv', tvId),
-        ]);
+        const showRes = await getTVDetails(tvId);
+        if (isMounted) setShow(showRes);
 
-        setShow(showRes);
-        setCast((creditsRes.cast || []).slice(0, 15));
-        setRecommendations(recsRes.results || []);
+        try {
+          const [creditsRes, recsRes] = await Promise.all([
+            getCredits('tv', tvId).catch(() => ({ cast: [], crew: [] })),
+            getRecommendations('tv', tvId).catch(() => ({ results: [] })),
+          ]);
+
+          if (isMounted) {
+            setCast((creditsRes.cast || []).slice(0, 15));
+            setRecommendations(recsRes.results || []);
+          }
+        } catch (e) {
+          console.warn('Sub-details error:', e);
+        }
 
         const validSeasons = (showRes.seasons || []).filter((s) => s.season_number > 0);
         const initialSeason = validSeasons.some(s => s.season_number === resumeSeason) 
           ? resumeSeason 
           : (validSeasons[0]?.season_number || 1);
 
-        setSelectedSeasonNum(initialSeason);
+        if (isMounted) setSelectedSeasonNum(initialSeason);
       } catch (err) {
         console.error('Failed to load TV details:', err);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     }
     fetchShowDetails();
+    return () => {
+      isMounted = false;
+    };
   }, [tvId]);
 
   useEffect(() => {

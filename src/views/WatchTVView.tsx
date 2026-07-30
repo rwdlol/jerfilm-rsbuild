@@ -58,18 +58,34 @@ export const WatchTVView: React.FC<WatchTVViewProps> = ({
 
   // Fetch TV Show details and current season
   useEffect(() => {
+    let isMounted = true;
     async function fetchData() {
       try {
         setLoading(true);
-        const [showRes, recsRes] = await Promise.all([
-          getTVDetails(tvId),
-          getRecommendations('tv', tvId),
-        ]);
-        setShow(showRes);
-        setRecommendations(recsRes.results || []);
+        const showRes = await getTVDetails(tvId);
+        if (isMounted) {
+          setShow(showRes);
+        }
 
-        const sData = await getTVSeasonDetails(tvId, seasonNum);
-        setSeasonData(sData);
+        // Recommendations (non-blocking)
+        try {
+          const recsRes = await getRecommendations('tv', tvId);
+          if (isMounted) {
+            setRecommendations(recsRes.results || []);
+          }
+        } catch (e) {
+          console.warn('Failed to fetch recommendations:', e);
+        }
+
+        // Season details (non-blocking fallback)
+        try {
+          const sData = await getTVSeasonDetails(tvId, seasonNum);
+          if (isMounted) {
+            setSeasonData(sData);
+          }
+        } catch (e) {
+          console.warn(`Failed to fetch season ${seasonNum} details:`, e);
+        }
 
         // Update watch progress
         if (updateTvProgress) {
@@ -78,10 +94,15 @@ export const WatchTVView: React.FC<WatchTVViewProps> = ({
       } catch (err) {
         console.error('Failed to load watch TV data:', err);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, [tvId, seasonNum, episodeNum]);
 
   // Fetch season data when drawer season changes
@@ -225,9 +246,11 @@ export const WatchTVView: React.FC<WatchTVViewProps> = ({
             key={iframeKey}
             src={streamUrl}
             title={`${show.name} S${seasonNum} E${episodeNum}`}
+            style={{ width: '100%', height: '100%' }}
+            frameBorder="0"
+            allow="autoplay *; fullscreen *; picture-in-picture *; encrypted-media *"
+            referrerPolicy="no-referrer"
             allowFullScreen
-            allow="autoplay; encrypted-media; picture-in-picture"
-            className="w-full h-full border-0"
           />
         </div>
 

@@ -35,9 +35,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({ video, title, onClose })
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${video.key}?autoplay=1`}
             title={video.name}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style={{ width: '100%', height: '100%' }}
+            frameBorder="0"
+            allow="autoplay *; fullscreen *; picture-in-picture *; encrypted-media *"
+            referrerPolicy="no-referrer"
             allowFullScreen
-            className="w-full h-full border-0"
           />
         </div>
       </div>
