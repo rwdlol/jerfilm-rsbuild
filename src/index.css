@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Rabar_022';
+  src: url('https://www.jerfilm.vip/static/font/Rabar_022.9d338c23af.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    font-family: 'Rabar_022', 'Rabar022', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+  
+  body {
+    font-family: 'Rabar_022', 'Rabar022', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #09090b;
+    color: #fafafa;
+    direction: rtl;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom compact scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fbbf24;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Nova Compact Glass Panel */
+.glass-panel {
+  background: rgba(18, 18, 23, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nova-card {
+  background: rgba(24, 24, 27, 0.7);
+  border: 1px solid rgba(39, 39, 42, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+

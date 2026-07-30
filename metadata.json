@@ -1,0 +1,6 @@
+{
+  "name": "Jerfilm.VIP",
+  "description": "Jerfilm.VIP - Fast Kurdish subtitle streaming for movies, TV series, collections, and actor details with AI translation system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
