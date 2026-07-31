@@ -87,13 +87,13 @@ export const MediaCard: React.FC<MediaCardProps> = ({
 
 				{/* Top Badges */}
 				<div className="absolute top-2 left-2 right-2 flex items-center justify-between z-10 pointer-events-none">
-					<div className="flex items-center gap-1 bg-black/70 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10 text-[10px] font-bold text-amber-400">
+					<div className="flex items-center gap-1 bg-black/70 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10 text-xs font-bold text-amber-400">
 						<Star className="w-3 h-3 fill-amber-400 text-amber-400" />
 						<span>{rating}</span>
 					</div>
 
 					<div className="flex items-center gap-1">
-						{/* <span className="text-[9px] font-black uppercase tracking-wider bg-amber-400 text-zinc-950 px-1.5 py-0.5 rounded-md border border-amber-300 shadow-sm">
+						{/* <span className="text-xs font-black uppercase tracking-wider bg-amber-400 text-zinc-950 px-1.5 py-0.5 rounded-md border border-amber-300 shadow-sm">
               {type === 'movie' ? 'فیلم' : 'زنجیرە'}
             </span> */}
 
@@ -137,7 +137,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
 					<h3 className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1">
 						{title}
 					</h3>
-					<div className="flex items-center gap-1.5 mt-0.5 text-[10px] sm:text-[11px] text-zinc-400 font-medium">
+					<div className="flex items-center gap-1.5 mt-0.5 text-xs sm:text-xs text-zinc-400 font-medium">
 						{year && <span>{year}</span>}
 						{year && <span>&middot;</span>}
 						<span>{type === "movie" ? "فیلم" : "زنجیرە"}</span>

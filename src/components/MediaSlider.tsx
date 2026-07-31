@@ -57,7 +57,7 @@ export const MediaSlider: React.FC<MediaSliderProps> = ({
 							{tToSorani(title)}
 						</h2>
 						{subtitle && (
-							<p className="text-[11px] text-zinc-400 font-normal">
+							<p className="text-xs text-zinc-400 font-normal">
 								{tToSorani(subtitle)}
 							</p>
 						)}

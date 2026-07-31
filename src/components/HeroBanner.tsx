@@ -102,7 +102,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 				<div className="max-w-2xl space-y-3 text-right">
 					{/* Tag Badges */}
 					<div className="flex items-center gap-2 flex-wrap">
-						<span className="bg-amber-400 text-zinc-950 font-black text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-md shadow-md">
+						<span className="bg-amber-400 text-zinc-950 font-black text-xs tracking-wider uppercase px-2.5 py-0.5 rounded-md shadow-md">
 							تایبەتمەند &middot; {type === "movie" ? "فیلم" : "زنجیرە"}
 						</span>
 						<div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-md border border-white/10 text-xs font-bold text-amber-400">

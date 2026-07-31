@@ -2,8 +2,7 @@
 
 @font-face {
 	font-family: "Rabar_022";
-	src: url("https://www.jerfilm.vip/static/font/Rabar_022.9d338c23af.woff2")
-		format("woff2");
+	src: url("./fonts/Rabar_022.woff2") format("woff2");
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;

@@ -21,7 +21,7 @@ export const ServerSelector: React.FC<ServerSelectorProps> = ({
 						سێرڤەرەکانی پەخشکردن
 					</span>
 				</div>
-				<div className="flex items-center gap-1 text-[11px] text-zinc-400">
+				<div className="flex items-center gap-1 text-xs text-zinc-400">
 					<Zap className="w-3 h-3 text-amber-400" />
 					<span>ئەگەر ڤیدیۆکە کاری نەکرد سێرڤەرێکی تر هەڵبژێرە</span>
 				</div>

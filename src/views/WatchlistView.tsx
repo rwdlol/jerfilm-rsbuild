@@ -161,7 +161,7 @@ export default function WatchlistView({
 										alt={item.title}
 										className="w-full h-full object-cover"
 									/>
-									<span className="absolute top-1 right-1 bg-amber-400 text-zinc-950 text-[9px] font-black px-1.5 py-0.2 rounded uppercase">
+									<span className="absolute top-1 right-1 bg-amber-400 text-zinc-950 text-xs font-black px-1.5 py-0.2 rounded uppercase">
 										{item.mediaType === "movie" ? "فیلم" : "زنجیرە"}
 									</span>
 								</div>
@@ -184,7 +184,7 @@ export default function WatchlistView({
 											{item.title}
 										</h3>
 
-										<div className="flex items-center gap-2 text-[11px] text-zinc-400 mt-1">
+										<div className="flex items-center gap-2 text-xs text-zinc-400 mt-1">
 											<span className="text-amber-400 font-bold">
 												★ {item.voteAverage.toFixed(1)}
 											</span>
@@ -194,7 +194,7 @@ export default function WatchlistView({
 										</div>
 
 										{item.mediaType === "tv" && item.lastWatchedSeason && (
-											<div className="mt-2 text-[10px] font-bold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded-md inline-block">
+											<div className="mt-2 text-xs font-bold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded-md inline-block">
 												پێشکەوتن: وەرزی {item.lastWatchedSeason} ئەڵقەی{" "}
 												{item.lastWatchedEpisode || 1}
 											</div>
@@ -213,7 +213,7 @@ export default function WatchlistView({
 														e.target.value as WatchStatus,
 													)
 												}
-												className="bg-zinc-950 border border-zinc-800 text-zinc-300 text-[11px] font-semibold px-2 py-1 rounded-lg focus:outline-none focus:border-amber-400"
+												className="bg-zinc-950 border border-zinc-800 text-zinc-300 text-xs font-semibold px-2 py-1 rounded-lg focus:outline-none focus:border-amber-400"
 											>
 												<option value="plan">پلاندانان بۆ سەیرکردن</option>
 												<option value="watching">سەیرکردن</option>

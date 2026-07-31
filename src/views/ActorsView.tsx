@@ -126,7 +126,7 @@ export default function ActorsView({ onRouteChange }: ActorsViewProps) {
 										className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 									/>
 									<div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
-									<div className="absolute top-2 right-2 bg-amber-400/90 text-zinc-950 text-[10px] font-black px-2 py-0.5 rounded-md shadow-md">
+									<div className="absolute top-2 right-2 bg-amber-400/90 text-zinc-950 text-xs font-black px-2 py-0.5 rounded-md shadow-md">
 										{actor.known_for_department || "ئەکتەر"}
 									</div>
 								</div>
@@ -136,7 +136,7 @@ export default function ActorsView({ onRouteChange }: ActorsViewProps) {
 										{actor.name}
 									</h3>
 									{knownForTitles && (
-										<p className="text-[10px] text-zinc-400 mt-1 line-clamp-1 font-medium">
+										<p className="text-xs text-zinc-400 mt-1 line-clamp-1 font-medium">
 											ناودار بە: {knownForTitles}
 										</p>
 									)}

@@ -442,7 +442,7 @@ export default function WatchTVView({
 					<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
 						<div>
 							<div className="flex items-center gap-2 flex-wrap mb-1">
-								<span className="bg-amber-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase">
+								<span className="bg-amber-600 text-white text-xs font-extrabold px-2 py-0.5 rounded uppercase">
 									و{numericSeasonNum} ئە{numericEpisodeNum}
 								</span>
 								<div className="flex items-center gap-1 text-xs font-bold text-amber-400">
@@ -537,7 +537,7 @@ export default function WatchTVView({
 												ئەڵقەی {ep.episode_number}:{" "}
 												{ep.name || "ناوی ئەڵقە بەردەست نییە"}
 											</p>
-											<p className="text-[10px] opacity-75">
+											<p className="text-xs opacity-75">
 												{ep.air_date || "N/A"}
 											</p>
 										</div>
@@ -637,7 +637,7 @@ export default function WatchTVView({
 													<p className="text-xs font-bold truncate">
 														{ep.name}
 													</p>
-													<p className="text-[10px] text-zinc-500">
+													<p className="text-xs text-zinc-500">
 														{ep.air_date ? ep.air_date : "N/A"}{" "}
 														{ep.runtime ? `&middot; ${ep.runtime} خولەک` : ""}
 													</p>

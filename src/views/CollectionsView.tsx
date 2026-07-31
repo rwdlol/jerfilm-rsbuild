@@ -169,7 +169,7 @@ export default function CollectionsView({
 									className={`w-4 h-4 ${isSelected ? "text-zinc-950" : "text-amber-400"}`}
 								/>
 								<span
-									className={`text-[10px] px-1.5 py-0.5 rounded ${isSelected ? "bg-zinc-950/20 text-zinc-950" : "bg-zinc-800 text-zinc-400"}`}
+									className={`text-xs px-1.5 py-0.5 rounded ${isSelected ? "bg-zinc-950/20 text-zinc-950" : "bg-zinc-800 text-zinc-400"}`}
 								>
 									{c.itemCount} بەش
 								</span>
@@ -231,7 +231,7 @@ export default function CollectionsView({
 												loading="lazy"
 												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 											/>
-											<div className="absolute top-2 right-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] text-amber-400 font-bold flex items-center gap-1">
+											<div className="absolute top-2 right-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md text-xs text-amber-400 font-bold flex items-center gap-1">
 												<Star className="w-3 h-3 fill-amber-400" />
 												<span>
 													{item.vote_average
@@ -249,7 +249,7 @@ export default function CollectionsView({
 											<h4 className="text-xs font-bold text-white line-clamp-1 group-hover:text-amber-400 transition-colors">
 												{item.title || item.name}
 											</h4>
-											<p className="text-[10px] text-zinc-400 mt-0.5">
+											<p className="text-xs text-zinc-400 mt-0.5">
 												{item.release_date
 													? item.release_date.split("-")[0]
 													: "2024"}

@@ -248,7 +248,7 @@ export default function TVDetailView({
 					<div className="flex-1 space-y-4 text-center md:text-right">
 						<div>
 							<div className="flex items-center justify-center md:justify-start gap-2 flex-wrap mb-2">
-								<span className="bg-amber-400 text-zinc-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md">
+								<span className="bg-amber-400 text-zinc-950 text-xs font-black uppercase px-2.5 py-0.5 rounded-md">
 									زنجیرە
 								</span>
 								<div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-md border border-white/10 text-xs font-bold text-amber-400">
@@ -285,7 +285,7 @@ export default function TVDetailView({
 								{show.genres.map((g) => (
 									<span
 										key={g.id}
-										className="text-[11px] font-semibold bg-zinc-900 text-zinc-300 border border-zinc-800 px-2.5 py-1 rounded-lg"
+										className="text-xs font-semibold bg-zinc-900 text-zinc-300 border border-zinc-800 px-2.5 py-1 rounded-lg"
 									>
 										{tToSorani(g.name)}
 									</span>
@@ -420,7 +420,7 @@ export default function TVDetailView({
 												<div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
 													<Play className="w-5 h-5 text-white fill-white opacity-80 group-hover:scale-110 transition-all" />
 												</div>
-												<span className="absolute bottom-1 right-1 bg-black/70 px-1.5 py-0.2 rounded text-[9px] font-extrabold text-white">
+												<span className="absolute bottom-1 right-1 bg-black/70 px-1.5 py-0.2 rounded text-xs font-extrabold text-white">
 													ئەڵقەی {episode.episode_number}
 												</span>
 											</div>
@@ -432,13 +432,13 @@ export default function TVDetailView({
 														{episode.episode_number}. {episode.name}
 													</h4>
 													{isPlaying && (
-														<span className="text-[9px] font-extrabold bg-amber-600 text-white px-1.5 py-0.2 rounded uppercase">
+														<span className="text-xs font-extrabold bg-amber-600 text-white px-1.5 py-0.2 rounded uppercase">
 															سەیرکردنی ئێستا
 														</span>
 													)}
 												</div>
 
-												<div className="flex items-center gap-2 text-[10px] text-zinc-400 mt-0.5">
+												<div className="flex items-center gap-2 text-xs text-zinc-400 mt-0.5">
 													{episode.air_date && <span>{episode.air_date}</span>}
 													{episode.runtime && (
 														<>
@@ -456,7 +456,7 @@ export default function TVDetailView({
 													)}
 												</div>
 
-												<p className="text-[11px] text-zinc-400 line-clamp-2 mt-1 font-normal">
+												<p className="text-xs text-zinc-400 line-clamp-2 mt-1 font-normal">
 													{episode.overview ||
 														"هیچ کورتەیەک بۆ ئەم ئەڵقەیە بەردەست نییە."}
 												</p>
@@ -506,7 +506,7 @@ export default function TVDetailView({
 									<p className="text-xs font-bold text-white line-clamp-1">
 										{actor.name}
 									</p>
-									<p className="text-[10px] text-zinc-400 line-clamp-1 mt-0.5">
+									<p className="text-xs text-zinc-400 line-clamp-1 mt-0.5">
 										{actor.character}
 									</p>
 								</div>

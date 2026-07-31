@@ -55,7 +55,7 @@ export const Top10Slider: React.FC<Top10SliderProps> = ({
 						<h2 className="text-sm sm:text-base md:text-lg font-black text-white tracking-wide font-display flex items-center gap-2">
 							<span>باشترینەکانی ئەمڕۆ لە کوردستان</span>
 						</h2>
-						<p className="text-[11px] text-zinc-400 font-medium">
+						<p className="text-xs text-zinc-400 font-medium">
 							پڕبینەرترین بەرهەمەکانی هەفتە
 						</p>
 					</div>
@@ -130,13 +130,13 @@ export const Top10Slider: React.FC<Top10SliderProps> = ({
 									<div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
 
 									{/* Top VIP Badge */}
-									<div className="absolute top-2 right-2 bg-linear-to-r from-amber-400 to-amber-500 text-zinc-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-md shadow-md">
+									<div className="absolute top-2 right-2 bg-linear-to-r from-amber-400 to-amber-500 text-zinc-950 text-xs font-black uppercase px-2 py-0.5 rounded-md shadow-md">
 										TOP {rank}
 									</div>
 
 									{/* Bottom Info & Play button overlay */}
 									<div className="absolute inset-x-0 bottom-0 p-3 bg-linear-to-t from-zinc-950 via-zinc-950/90 to-transparent flex flex-col justify-end">
-										<div className="flex items-center gap-1.5 text-[10px] text-amber-400 font-bold mb-1">
+										<div className="flex items-center gap-1.5 text-xs text-amber-400 font-bold mb-1">
 											<Star className="w-3 h-3 fill-amber-400" />
 											<span>{rating}</span>
 											<span className="text-zinc-400">

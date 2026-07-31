@@ -253,7 +253,7 @@ export default function WatchMovieView({
 					<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
 						<div>
 							<div className="flex items-center gap-2 flex-wrap mb-1">
-								<span className="bg-amber-400 text-zinc-950 text-[10px] font-black px-2 py-0.5 rounded uppercase">
+								<span className="bg-amber-400 text-zinc-950 text-xs font-black px-2 py-0.5 rounded uppercase">
 									فیلم
 								</span>
 								<div className="flex items-center gap-1 text-xs font-bold text-amber-400">
