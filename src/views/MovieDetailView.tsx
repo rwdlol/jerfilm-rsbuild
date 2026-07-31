@@ -322,7 +322,7 @@ export default function PaMovieDetailViewge({
 				{cast.length > 0 && (
 					<section className="my-10">
 						<h2 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
-							<Sparkles className="w-4 h-4 text-red-500" />
+							<Sparkles className="w-4 h-4 text-amber-500" />
 							<span>ئەکتەرە سەرەکییەکان</span>
 						</h2>
 

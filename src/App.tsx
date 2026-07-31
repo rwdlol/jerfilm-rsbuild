@@ -139,7 +139,7 @@ function AppContent() {
 		const tvId = Number(id);
 		const seasonNum = Number(season || searchParams.get("s") || 1);
 		const episodeNum = Number(episode || searchParams.get("e") || 1);
-		if (!tvId || isNaN(tvId)) return <Navigate to="/tv" replace />;
+		if (!tvId || Number.isNaN(tvId)) return <Navigate to="/tv" replace />;
 		return (
 			<WatchTVView
 				tvId={tvId}
@@ -329,10 +329,10 @@ function AppContent() {
 			</main>
 
 			{/* Website Footer */}
-			<Footer onRouteChange={handleRouteChange} />
+			<Footer />
 
 			{/* Fixed Bottom Navigation for Mobile */}
-			<BottomNav onRouteChange={handleRouteChange} />
+			<BottomNav />
 		</div>
 	);
 }

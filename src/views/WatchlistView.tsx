@@ -129,7 +129,7 @@ export default function WatchlistView({
 					<button
 						type="button"
 						onClick={() => onRouteChange({ mode: "home" })}
-						className="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-red-950/50"
+						className="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-amber-950/50"
 					>
 						گەڕان لە بەرهەمەکاندا
 					</button>

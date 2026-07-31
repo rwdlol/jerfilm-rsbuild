@@ -24,7 +24,7 @@ export default function AboutView({ onRouteChange }: AboutViewProps) {
 			{/* Hero Header */}
 			<div className="relative rounded-3xl overflow-hidden bg-linear-to-b from-zinc-900 via-zinc-950 to-zinc-950 border border-zinc-800 p-8 sm:p-12 mb-12 shadow-2xl">
 				<div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-				<div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+				<div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
 
 				<div className="relative z-10 max-w-3xl">
 					<div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black mb-4">

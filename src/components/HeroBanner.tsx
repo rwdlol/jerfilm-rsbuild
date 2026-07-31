@@ -177,7 +177,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 							onClick={() => setCurrentIndex(idx)}
 							className={`h-1.5 rounded-full transition-all ${
 								idx === currentIndex
-									? "w-6 bg-red-500 shadow-sm shadow-red-500"
+									? "w-6 bg-amber-500 shadow-sm shadow-amber-500"
 									: "w-2 bg-zinc-700 hover:bg-zinc-500"
 							}`}
 						/>

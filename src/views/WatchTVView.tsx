@@ -442,7 +442,7 @@ export default function WatchTVView({
 					<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
 						<div>
 							<div className="flex items-center gap-2 flex-wrap mb-1">
-								<span className="bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase">
+								<span className="bg-amber-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase">
 									و{numericSeasonNum} ئە{numericEpisodeNum}
 								</span>
 								<div className="flex items-center gap-1 text-xs font-bold text-amber-400">
@@ -469,12 +469,12 @@ export default function WatchTVView({
 								onClick={(e) => onToggleWatchlist(e, show, "tv")}
 								className={`px-3.5 py-2 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-all ${
 									inWatchlist
-										? "bg-red-950/80 border-red-500/60 text-red-400"
+										? "bg-amber-950/80 border-amber-500/60 text-amber-400"
 										: "bg-zinc-950 text-zinc-300 border-zinc-800 hover:text-white"
 								}`}
 							>
 								{inWatchlist ? (
-									<BookmarkCheck className="w-4 h-4 text-red-400" />
+									<BookmarkCheck className="w-4 h-4 text-amber-400" />
 								) : (
 									<Bookmark className="w-4 h-4" />
 								)}
@@ -525,7 +525,7 @@ export default function WatchTVView({
 										}
 										className={`p-2.5 rounded-xl border text-right flex items-center gap-3 transition-all ${
 											isCurrent
-												? "bg-red-600 text-white border-red-500 font-bold shadow"
+												? "bg-amber-600 text-white border-amber-500 font-bold shadow"
 												: "bg-zinc-950/80 hover:bg-zinc-800 text-zinc-300 border-zinc-800"
 										}`}
 									>
@@ -568,7 +568,7 @@ export default function WatchTVView({
 					<div className="w-full max-w-2xl bg-zinc-900 border border-zinc-800 rounded-t-3xl sm:rounded-2xl max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
 						<div className="p-4 bg-zinc-950 flex items-center justify-between border-b border-zinc-800">
 							<div className="flex items-center gap-2">
-								<Layers className="w-5 h-5 text-red-500" />
+								<Layers className="w-5 h-5 text-amber-500" />
 								<h3 className="text-sm font-bold text-white">
 									{show.name} - هەڵبژاردنی ئەڵقە
 								</h3>
@@ -591,7 +591,7 @@ export default function WatchTVView({
 									onClick={() => setSelectedSeasonForDrawer(s.season_number)}
 									className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
 										selectedSeasonForDrawer === s.season_number
-											? "bg-red-600 text-white"
+											? "bg-amber-600 text-white"
 											: "bg-zinc-950 text-zinc-400 hover:text-white"
 									}`}
 								>
@@ -625,12 +625,12 @@ export default function WatchTVView({
 											}}
 											className={`p-3 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-all ${
 												isCurrent
-													? "bg-red-950/60 border-red-500/80 text-white font-bold"
+													? "bg-amber-950/60 border-amber-500/80 text-white font-bold"
 													: "bg-zinc-950 hover:bg-zinc-800 border-zinc-800/80 text-zinc-300"
 											}`}
 										>
 											<div className="flex items-center gap-3 min-w-0">
-												<div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center text-xs font-black text-red-500 shrink-0">
+												<div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center text-xs font-black text-amber-500 shrink-0">
 													{ep.episode_number}
 												</div>
 												<div className="min-w-0">
@@ -646,7 +646,7 @@ export default function WatchTVView({
 
 											<button
 												type="button"
-												className="p-2 bg-red-600 hover:bg-red-500 text-white rounded-lg text-xs font-bold flex items-center gap-1"
+												className="p-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-bold flex items-center gap-1"
 											>
 												<Play className="w-3.5 h-3.5 fill-white" />
 												<span>سەیرکردن</span>

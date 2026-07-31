@@ -143,7 +143,7 @@ export default function HomeView({
 			{selectedGenreId && filteredMedia.length > 0 ? (
 				<section className="max-w-7xl mx-auto px-4 sm:px-6 my-6">
 					<h2 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
-						<Sparkles className="w-5 h-5 text-red-500" />
+						<Sparkles className="w-5 h-5 text-amber-500" />
 						<span>ئەنجامەکانی بەپێی ژانەر</span>
 					</h2>
 					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">

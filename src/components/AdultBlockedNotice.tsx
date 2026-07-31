@@ -13,14 +13,14 @@ export const AdultBlockedNotice: React.FC<AdultBlockedNoticeProps> = ({
 		<div className="min-h-[80vh] flex items-center justify-center px-4 py-16">
 			<div className="max-w-md w-full bg-zinc-900/90 border border-zinc-800 rounded-3xl p-8 text-center backdrop-blur-xl shadow-2xl animate-in zoom-in-95 duration-300 relative overflow-hidden">
 				{/* Glow accent */}
-				<div className="absolute -top-12 -right-12 w-40 h-40 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+				<div className="absolute -top-12 -right-12 w-40 h-40 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
 
 				{/* 18+ Warning Badge */}
-				<div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 shadow-inner">
+				<div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 shadow-inner">
 					<ShieldAlert className="w-10 h-10" />
 				</div>
 
-				<div className="inline-block px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-black tracking-widest uppercase mb-3">
+				<div className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black tracking-widest uppercase mb-3">
 					ناوەڕۆکی شیاو نییە (18+)
 				</div>
 

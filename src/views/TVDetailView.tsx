@@ -346,7 +346,7 @@ export default function TVDetailView({
 				<section className="my-10 bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 sm:p-6 backdrop-blur-md">
 					<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-zinc-800">
 						<div className="flex items-center gap-2">
-							<Layers className="w-5 h-5 text-red-500" />
+							<Layers className="w-5 h-5 text-amber-500" />
 							<h2 className="text-lg font-bold text-white">
 								ئەڵقەکان و وەرزەکان
 							</h2>
@@ -360,7 +360,7 @@ export default function TVDetailView({
 							<select
 								value={selectedSeasonNum}
 								onChange={(e) => setSelectedSeasonNum(Number(e.target.value))}
-								className="bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-1.5 text-xs text-white font-bold focus:outline-none focus:border-red-500"
+								className="bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-1.5 text-xs text-white font-bold focus:outline-none focus:border-amber-500"
 							>
 								{availableSeasons.map((s) => (
 									<option key={s.id} value={s.season_number}>
@@ -405,7 +405,7 @@ export default function TVDetailView({
 										}
 										className={`group p-3 rounded-xl border transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 cursor-pointer ${
 											isPlaying
-												? "bg-red-950/40 border-red-500/60 shadow-lg shadow-red-950/20"
+												? "bg-amber-950/40 border-amber-500/60 shadow-lg shadow-amber-950/20"
 												: "bg-zinc-950/80 hover:bg-zinc-800/80 border-zinc-800/80"
 										}`}
 									>
@@ -428,11 +428,11 @@ export default function TVDetailView({
 											{/* Info */}
 											<div className="flex-1 min-w-0">
 												<div className="flex items-center gap-2">
-													<h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1">
+													<h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1">
 														{episode.episode_number}. {episode.name}
 													</h4>
 													{isPlaying && (
-														<span className="text-[9px] font-extrabold bg-red-600 text-white px-1.5 py-0.2 rounded uppercase">
+														<span className="text-[9px] font-extrabold bg-amber-600 text-white px-1.5 py-0.2 rounded uppercase">
 															سەیرکردنی ئێستا
 														</span>
 													)}
@@ -472,7 +472,7 @@ export default function TVDetailView({
 													episode.episode_number,
 												);
 											}}
-											className="w-full sm:w-auto px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-lg flex items-center justify-center gap-1.5 shadow-md shadow-red-950/40"
+											className="w-full sm:w-auto px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg flex items-center justify-center gap-1.5 shadow-md shadow-amber-950/40"
 										>
 											<Play className="w-3.5 h-3.5 fill-white" />
 											<span>لێدان</span>
@@ -488,7 +488,7 @@ export default function TVDetailView({
 				{cast.length > 0 && (
 					<section className="my-10">
 						<h2 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
-							<Sparkles className="w-4 h-4 text-red-500" />
+							<Sparkles className="w-4 h-4 text-amber-500" />
 							<span>ئەکتەرە سەرەکییەکان</span>
 						</h2>
 

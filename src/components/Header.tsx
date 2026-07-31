@@ -132,7 +132,7 @@ export default function Header({ onRouteChange, watchlistCount }: HeaderProps) {
 							<Bookmark className="w-3.5 h-3.5" />
 							<span>لیستی سەیرکردن</span>
 							{watchlistCount > 0 && (
-								<span className="mr-0.5 px-1.5 py-0.2 text-[10px] bg-red-600 text-white font-black rounded-full">
+								<span className="mr-0.5 px-1.5 py-0.2 text-[10px] bg-amber-600 text-white font-black rounded-full">
 									{watchlistCount}
 								</span>
 							)}
@@ -159,7 +159,7 @@ export default function Header({ onRouteChange, watchlistCount }: HeaderProps) {
 						>
 							<Bookmark className="w-4 h-4 text-amber-400" />
 							{watchlistCount > 0 && (
-								<span className="absolute -top-1 -left-1 w-4 h-4 bg-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center">
+								<span className="absolute -top-1 -left-1 w-4 h-4 bg-amber-600 text-white text-[10px] font-black rounded-full flex items-center justify-center">
 									{watchlistCount}
 								</span>
 							)}
